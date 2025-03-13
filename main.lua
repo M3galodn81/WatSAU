@@ -7,6 +7,11 @@
 ----------------------------------------------
 ------------ MOD CODE -------------------------
 
+------------------vars------------------------
+SMODS.optional_features.cardareas.unscored = true
+----------------------------------------------
+
+
 SMODS.Atlas{
     key = 'jokers', --atlas key
     path = 'jokers.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
@@ -14,6 +19,7 @@ SMODS.Atlas{
     py = 95 -- height of one card
 }
 
+-- test joker
 SMODS.Joker{
     key = 'test_joker',
     loc_txt = {
@@ -68,7 +74,7 @@ SMODS.Joker{
     end,
 }
 
-
+--haze
 SMODS.Joker{
     key = 'haze',
     loc_txt = {
@@ -101,20 +107,22 @@ SMODS.Joker{
     end,
 
     calculate = function(self,card,context)
+        -- scoring
         if context.joker_main then
-            return {
-                card = card,
-                Xmult_mod = card.ability.extra.Xmult,
-                message = 'X' .. card.ability.extra.Xmult .. ' Mult',
-                colour = G.C.MULT
-            }
+            if context.scoring_name == "High Card" then
+                return {
+                    card = card,
+                    Xmult_mod = card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult .. ' Mult',
+                    colour = G.C.MULT
+                }
+            end
+            
         end
 
-        
+        -- check if high card
         if context.before and next(context.poker_hands['High Card']) and not context.blueprint then
-
             if context.scoring_name == "High Card" then
-
                 if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
                     card = create_card('Spectral',G.consumeables, nil, nil, nil, nil, nil, '8ba')
                     card:add_to_deck()
@@ -122,15 +130,21 @@ SMODS.Joker{
                 else
                     return {
                         message = 'No Room!',
-                        colour = G.C.YELLOW     
+                        colour = G.C.FILTER     
                     }
-                    
                 end 
             else 
                     return {
-                        message = 'Invalid!', colour = G.C.YELLOW
+                        message = 'Invalid!', colour = G.C.FILTER 
                     }
             end
+        end
+
+        -- destroy cards
+        if context.destroy_card and context.cardarea == G.play and not context.blueprint then
+            return{
+                remove = true
+            }
         end
     end,
 
