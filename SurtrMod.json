@@ -1,0 +1,19 @@
+
+{
+	"id": "SurtrMod", 
+	"name": "Surtr Mod",
+	"author": ["M3galodn81"],
+	"description": "Peak Pain.", 
+	"prefix": "surtr", 
+	"main_file": "main.lua",
+	"priority": 0, 
+	"badge_colour": "E1434B", 
+	"badge_text_colour": "2F2D32", 
+	"display_name": "Surtr", 
+	"version": "1.0.0", 
+    "dependencies":[
+	],
+	"conflicts": [], 
+	"provides": [], 
+	"dump_loc": false
+}
