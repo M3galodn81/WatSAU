@@ -10,7 +10,7 @@
 	"badge_colour": "E1434B", 
 	"badge_text_colour": "2F2D32", 
 	"display_name": "Surtr", 
-	"version": "alpha 0.1.0", 
+	"version": "0.1.0~pre-alpha", 
     "dependencies":[
 	],
 	"conflicts": [], 

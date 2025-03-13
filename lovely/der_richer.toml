@@ -30,23 +30,22 @@ target = "back.lua"
 pattern = "if self.name == 'Plasma Deck' and args.context == 'final_scoring_step' then"
 position = "at"
 payload = '''
-print(args.context)
 if ((self.name == 'Plasma Deck') and args.context == 'final_scoring_step') or (is_der_richter_exists() and args.context == "joker_main") then
 '''
 match_indent = true
 overwrite = true
 
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'final_scoring_step', chips = hand_chips, mult = mult}"
-position = "before"
-payload = '''
-print("Edit state event luya")
-local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'joker_main', chips = hand_chips, mult = mult}
-'''
-match_indent = true
-overwrite = true
+
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'final_scoring_step', chips = hand_chips, mult = mult}"
+# position = "before"
+# payload = '''
+# local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'joker_main', chips = hand_chips, mult = mult}
+# '''
+# match_indent = true
+# overwrite = true
 
 # payload = '''
 # if (self.name == 'Plasma Deck' or (G.GAME.VictinsCollection and G.GAME.VictinsCollection.equalize)) and args.context == 'final_scoring_step' then
