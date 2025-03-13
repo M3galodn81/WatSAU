@@ -184,6 +184,8 @@ SMODS.Joker{
         if context.joker_main then
 
             local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'joker_main', chips = hand_chips, mult = mult}
+            mult = mod_mult(nu_mult or mult)
+            hand_chips = mod_chips(nu_chip or hand_chips)
             return {
                 
                 card = card,
