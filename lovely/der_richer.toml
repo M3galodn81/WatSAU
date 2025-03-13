@@ -35,17 +35,28 @@ if ((self.name == 'Plasma Deck') and args.context == 'final_scoring_step') or (i
 match_indent = true
 overwrite = true
 
-
-# [[patches]]
-# [patches.pattern]
-# target = "functions/state_events.lua"
-# pattern = "local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'final_scoring_step', chips = hand_chips, mult = mult}"
-# position = "before"
-# payload = '''
-# local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'joker_main', chips = hand_chips, mult = mult}
-# '''
-# match_indent = true
-# overwrite = true
+[[patches]]
+[patches.pattern]
+target = "back.lua"
+pattern = """
+                attention_text({
+                    scale = 1.4, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
+                })
+"""
+position = "at"
+payload = '''
+if args.context == 'final_scoring_step' then
+	attention_text({
+		scale = 1.4, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
+	})
+else 
+	attention_text({
+		scale = 0, text = text, hold = 2, align = 'cm', offset = {x = 0,y = -2.7},major = G.play
+	})
+end
+'''
+match_indent = true
+overwrite = true
 
 # payload = '''
 # if (self.name == 'Plasma Deck' or (G.GAME.VictinsCollection and G.GAME.VictinsCollection.equalize)) and args.context == 'final_scoring_step' then
