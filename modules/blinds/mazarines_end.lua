@@ -4,8 +4,8 @@ SMODS.Blind{
         name = "Mazarine's End",
         text = {
             'Hand size is set to 3',
-            'then played hand will',
-            'be destroyed '
+            'and every played hand',
+            'will be destroyed '
         }
     },
     dollars = 8,
@@ -18,9 +18,9 @@ SMODS.Blind{
 
     debuff = {
         h_size_le = 3
-    },
+    }, 
 
-    final_scoring_step_effect  = function(self)
+    press_play = function(self)
         for i=#G.play.cards, 1, -1 do
             destroyed_cards[#destroyed_cards+1] = G.play.cards[i]
         end
