@@ -14,7 +14,7 @@ SMODS.Blind{
     boss_colour =HEX('6f6ca6'),
 
     atlas = 'blinds', 
-    pos = { x = 0, y = 0 },
+    pos = { x = 0, y = 1 },
 
     debuff = {
 

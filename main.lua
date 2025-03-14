@@ -42,7 +42,8 @@ assert(SMODS.load_file("./modules/jokers/myrtle.lua"))()
 -- Load Blinds
 assert(SMODS.load_file("./modules/blinds/mazarines_end.lua"))() 
 assert(SMODS.load_file("./modules/blinds/distorted_fate.lua"))() 
-
+-- assert(SMODS.load_file("./modules/blinds/broken_sky.lua"))() 
+assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))() 
 
 
 
