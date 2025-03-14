@@ -1,0 +1,45 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# add blind function
+[[patches]]
+[patches.pattern]
+target = "blind.lua"
+pattern = "function Blind:press_play()"
+position = "before"
+payload = '''
+function Blind:final_scoring_step_effect()
+    if self.disabled then return end
+end
+'''
+match_indent = true
+overwrite = false
+
+#add it after scoring ends
+[[patches]]
+[patches.pattern]
+target = "./functions/state_events.lua"
+pattern = "if G.GAME.blind:press_play() then"
+position = "before"
+payload = '''
+if G.GAME.blind:final_scoring_step_effect() then
+    print("Hello")
+    G.E_MANAGER:add_event(Event({
+        trigger = 'immediate',
+        func = (function()
+            G.HUD_blind:get_UIE_by_ID('HUD_blind_debuff_1'):juice_up(0.3, 0)
+            G.HUD_blind:get_UIE_by_ID('HUD_blind_debuff_2'):juice_up(0.3, 0)
+            G.GAME.blind:juice_up()
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
+                play_sound('tarot2', 0.76, 0.4);return true end}))
+            play_sound('tarot2', 1, 0.4)
+            return true
+        end)
+    }))
+    delay(0.4)
+end
+'''
+match_indent = true
+overwrite = false
