@@ -1,9 +1,9 @@
 --- STEAMODDED HEADER
---- MOD_NAME: Surtr Mod
---- MOD_ID: SurtrMod
+--- MOD_NAME: Where are the Stars Above Us
+--- MOD_ID: WatSAU
 --- MOD_AUTHOR: [M3galodn81]
 --- MOD_DESCRIPTION: Peak Pain
---- PREFIX: surtr
+--- PREFIX: watsau
 ----------------------------------------------
 ------------ MOD CODE -------------------------
 

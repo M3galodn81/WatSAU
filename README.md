@@ -1,10 +1,16 @@
-# Surtr Mod
+# Where are the Stars Above Us (WatSAU) Mod
 
 A Balatro Mod where I added random or broken jokers 
 
 WIP description
 
 # Additions
+
+- 4 jokers
+- 2 blinds
+- x new consumable types
+- 
+
 
 # Installation Guide
 

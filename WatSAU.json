@@ -1,15 +1,15 @@
 
 {
-	"id": "SurtrMod", 
-	"name": "Surtr Mod",
+	"id": "WatSAU", 
+	"name": "Where are the Stars Above Us",
 	"author": ["M3galodn81"],
-	"description": "Peak Pain.", 
-	"prefix": "surtr", 
+	"description": "WIP Balatro Mod, Peak Pain.", 
+	"prefix": "watsau", 
 	"main_file": "main.lua",
 	"priority": 0, 
 	"badge_colour": "E1434B", 
 	"badge_text_colour": "2F2D32", 
-	"display_name": "Surtr", 
+	"display_name": "WatSAU", 
 	"version": "0.1.0~pre-alpha", 
     "dependencies":[
 	],
