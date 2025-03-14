@@ -13,7 +13,7 @@ SMODS.optional_features.cardareas.unscored = true
 
 -- Joker Atlas
 SMODS.Atlas{
-    key = 'jokers', --atlas key
+    key = 'watsau_jokers', --atlas key
     path = 'jokers.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
     px = 71, --width of one card
     py = 95 -- height of one card
@@ -22,7 +22,7 @@ SMODS.Atlas{
 -- Blind Atlas
 
 SMODS.Atlas{
-    key = 'blinds', --atlas key
+    key = 'watsau_blinds', --atlas key
     path = 'blinds.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
     px = 34, --width of one card
     py = 34, -- height of one card
@@ -40,10 +40,13 @@ assert(SMODS.load_file("./modules/jokers/myrtle.lua"))()
 -- Load Consumables
 
 -- Load Blinds
-assert(SMODS.load_file("./modules/blinds/mazarines_end.lua"))() 
+-- assert(SMODS.load_file("./modules/blinds/mazarines_end.lua"))() 
 assert(SMODS.load_file("./modules/blinds/distorted_fate.lua"))() 
 -- assert(SMODS.load_file("./modules/blinds/broken_sky.lua"))() 
 assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))() 
+
+-- Load Enhancements
+assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
 
 
 

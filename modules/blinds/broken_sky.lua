@@ -13,7 +13,7 @@ SMODS.Blind{
     boss = {min = 1, max = 16, showdown = true},
     boss_colour =HEX('528aae'),
 
-    atlas = 'blinds', 
+    atlas = 'watsau_blinds', 
     pos = { x = 0, y = 2 },
 
     debuff = {

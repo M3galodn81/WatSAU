@@ -9,7 +9,7 @@ SMODS.Joker{
             'Gain {C:money}123${} at end of round'
         }
     },
-    atlas = 'jokers', --atlas' key
+    atlas = 'watsau_jokers', --atlas' key
     pos = {x = 0, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     rarity = 4, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
