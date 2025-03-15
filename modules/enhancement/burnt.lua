@@ -1,24 +1,24 @@
 SMODS.Enhancement{
-    key = "molten",
+    key = "burnt",
     loc_txt = {
-        name = "Molten Card",
+        name = "Burnt Card",
         text = {
-            '{X:chips,C:white}X4{} Chips and {X:mult,C:white}X4{} Mult',
+            '{X:chips,C:white}X#1#{} Chips and {X:mult,C:white}X#2#{} Mult',
             'then destroys itself after',
-            'this card is played 4 times',
+            'this card is played 2 times',
             '{C:inactive,s:0.8}[Currently, this card is played #3# times]{}'
         }
     },
     atlas = "watsau_jokers",
     pos = { 
-        x = 4, 
+        x = 1, 
         y = 8
     },
     -- shader = "watsau_molten",
     config = {
         extra = {
-            x_mult = 4,
-            x_chips = 4, 
+            x_mult = 2,
+            x_chips = 2, 
             played_count = 0,
         }
     },
@@ -37,7 +37,7 @@ SMODS.Enhancement{
             }
         end
 
-        if card.ability.extra.played_count >= 4 and context.destroy_card and context.cardarea == G.play then
+        if card.ability.extra.played_count >= 2 and context.destroy_card and context.cardarea == G.play then
             return{
                 remove = true
             }

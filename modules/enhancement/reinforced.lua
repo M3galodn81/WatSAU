@@ -3,7 +3,7 @@ SMODS.Enhancement{
     loc_txt = {
         name = "Reinforced",
         text = {
-            '{C:mult}X4{} Mult',
+            '{C:mult}X2{} Mult',
             'when scored'
         }
     },
@@ -15,7 +15,7 @@ SMODS.Enhancement{
     -- shader = "",
     config = {
         extra = {
-            x_mult = 4,
+            x_mult = 2,
         }
     },
     

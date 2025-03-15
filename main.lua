@@ -36,6 +36,7 @@ assert(SMODS.load_file("./modules/jokers/test_joker.lua"))()
 assert(SMODS.load_file("./modules/jokers/haze.lua"))() 
 assert(SMODS.load_file("./modules/jokers/der_richter.lua"))()
 assert(SMODS.load_file("./modules/jokers/myrtle.lua"))() 
+assert(SMODS.load_file("./modules/jokers/surtr.lua"))() 
 
 -- Load Consumables
 
@@ -48,7 +49,7 @@ assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))()
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
 assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
-
+assert(SMODS.load_file("./modules/enhancement/burnt.lua"))() 
 
 
 
