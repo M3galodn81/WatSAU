@@ -20,9 +20,9 @@ SMODS.Blind{
     }, 
 
     modify_hand = function(self)
-        
+        local fraction = 1/3
         self.triggered = true
-        return math.max(math.floor(hand_chips*0.5 + 0.5), 0), math.max(math.floor(mult*0.5 + 0.5), 1), true
+        return math.max(math.floor(hand_chips*fraction + 0.5), 0), math.max(math.floor(mult*fraction + 0.5), 1), true
 
     end,
 

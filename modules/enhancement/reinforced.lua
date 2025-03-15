@@ -4,7 +4,7 @@ SMODS.Enhancement{
         name = "Reinforced",
         text = {
             '{C:mult}X4{} Mult',
-            'then destroys itself'
+            'when scored'
         }
     },
     atlas = "watsau_jokers",

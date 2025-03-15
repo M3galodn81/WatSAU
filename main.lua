@@ -47,6 +47,7 @@ assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))()
 
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
+assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
 
 
 
