@@ -44,30 +44,29 @@ SMODS.Joker{
         if context.before and context.cardarea == G.jokers and not context.blueprint then
             local unmelted = {}
             for k, v in ipairs(context.full_hand) do
-                print("loop works")
+                -- print("loop works")
                 -- Check if card is not Molten / Burnt
                 if (v.config.card ~= G.P_CENTERS.m_watsau_molten or v.config.card ~= G.P_CENTERS.m_watsau_burnt ) and not v.debuff then
                     unmelted[#unmelted+1] = v
-                    print("Inside MB check")
+                    -- print("Inside MB check")
                     print(v.config.card)
-
                     -- If Steel/Stone/Reinforced/Gold
-                    if  v.config.card == G.P_CENTERS.m_steel or
-                        v.config.card == G.P_CENTERS.m_stone or
-                        v.config.card == G.P_CENTERS.m_gold or
-                        v.config.card == G.P_CENTERS.m_watsau_reinforced then
+                    if  v.config.center.key == 'm_steel' or
+                        v.config.center.key == 'm_stone' or
+                        v.config.center.key == 'm_gold' or
+                        v.config.center.key == 'm_watsau_reinforced' then
                         
                         v:set_ability(G.P_CENTERS.m_watsau_molten, nil, true) --change to Molten
-                    elseif     v.config.card == G.P_CENTERS.m_bonus or
-                            v.config.card == G.P_CENTERS.m_glass or
-                            v.config.card == G.P_CENTERS.m_lucky or
-                            v.config.card == G.P_CENTERS.m_wild or
-                            v.config.card == G.P_CENTERS.c_base or
-                            v.config.card == G.P_CENTERS.m_mult  then
+                    end
 
-                            v:set_ability(G.P_CENTERS.m_watsau_burnt, nil, true)
-                    else
-                        print()
+                    if  v.config.center.key == 'm_bonus' or
+                        v.config.center.key == 'm_lucky' or
+                        v.config.center.key == 'm_wild' or
+                        v.config.center.key == 'm_mult' or
+                        v.config.center.key == 'm_glass' or
+                        v.config.center.key == 'c_base'    then
+
+                        v:set_ability(G.P_CENTERS.m_watsau_burnt, nil, true)
                     end
 
                     G.E_MANAGER:add_event(Event({
