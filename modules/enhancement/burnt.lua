@@ -5,8 +5,8 @@ SMODS.Enhancement{
         text = {
             '{X:chips,C:white}X#1#{} Chips and {X:mult,C:white}X#2#{} Mult',
             'then destroys itself after',
-            'this card is played 2 times',
-            '{C:inactive,s:0.8}[Currently, this card is played #3# times]{}'
+            'this card is played',
+            -- '{C:inactive,s:0.8}[Currently, this card is played #3# times]{}'
         }
     },
     atlas = "watsau_jokers",
@@ -37,7 +37,7 @@ SMODS.Enhancement{
             }
         end
 
-        if card.ability.extra.played_count >= 2 and context.destroy_card and context.cardarea == G.play then
+        if card.ability.extra.played_count >= 1 and context.destroy_card and context.cardarea == G.play then
             return{
                 remove = true
             }

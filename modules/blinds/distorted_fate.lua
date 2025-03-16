@@ -1,13 +1,5 @@
 SMODS.Blind{
     key = "final_distorted_fate",
-    loc_txt = {
-        name = "Distorted Fate",
-        text = {
-            'One random Joker will be',
-            'disabled every hand',
-            -- 'until the last joker is disabled',
-        }
-    },
     dollars = 8,
     mult = 1.75,
     boss = {min = 1, max = 16, showdown = true},
@@ -17,8 +9,8 @@ SMODS.Blind{
     pos = { x = 0, y = 1 },
 
     debuff = {
-
     }, 
+
 
     recalc_debuff = function(self, card, from_blind)
 

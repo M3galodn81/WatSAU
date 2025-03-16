@@ -1,0 +1,23 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# check if der richter is in deck
+[[patches]]
+[patches.pattern]
+target = "cardarea.lua"
+pattern = "function CardArea:shuffle(_seed)"
+position = "before"
+payload = '''
+function CardArea:reverse_order()
+    local n = #self.cards
+    for i = 1, math.floor(n / 2) do
+        self.cards[i], self.cards[n - i + 1] = self.cards[n - i + 1],self.cards[i]  
+    end
+    self:set_ranks()
+end
+
+'''
+match_indent = true
+overwrite = false

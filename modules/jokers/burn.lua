@@ -1,38 +1,34 @@
 SMODS.Joker{
-    key = 'surtr',
+    key = 'burn',
     loc_txt = {
-        name = 'Surtr',
+        name = 'Burn',
         text = {
-            'Change every Steel/Stone/Reinforced',
-            '/Gold Card into Molten Cards, otherwise',
-            'change it into Burnt Cards',
-            'retreats itself after transforming #1# cards'
+            'Burn every {C:attention}non-metallic{} cards',
+            'into {C:attention}Burnt Cards{}'
         }
     },
     atlas = 'watsau_jokers',                       --atlas' key
-    pos = {x = 5, y = 0},                   --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
-    rarity = 4,                             --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    pos = {x = 6, y = 0},                   --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
+    rarity = 3,                             --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
-    cost = 10,                               --cost
+    cost = 7,                               --cost
     unlocked = true,                        --where it is unlocked or not: if true, 
     discovered = false,                     --whether or not it starts discovered
     blueprint_compat = false,               --can it be blueprinted/brainstormed/other
-    eternal_compat = false,                  --can it be eternal
+    eternal_compat = true,                  --can it be eternal
     perishable_compat = true,               --can it be perishable
     
     config = { 
         extra = {
-            HP = 79,
+
         }
     },
 
     loc_vars = function(self,info_queue,center)
-        info_queue[#info_queue+1] = G.P_CENTERS.m_watsau_molten
         info_queue[#info_queue+1] = G.P_CENTERS.m_watsau_burnt
+        info_queue[#info_queue+1] = {set = "Other" , key = "tooltip_non_metal" }
+
         return {
-            vars = {
-                center.ability.extra.HP,
-            }
         }
     end,
 
@@ -51,21 +47,6 @@ SMODS.Joker{
                 if (v.config.card ~= G.P_CENTERS.m_watsau_molten or v.config.card ~= G.P_CENTERS.m_watsau_burnt ) and not v.debuff then
                     unmelted[#unmelted+1] = v
                     -- print("Inside MB check")
-                    print(v.config.card)
-                    -- If Steel/Stone/Reinforced/Gold
-                    if  v.config.center.key == 'm_steel' or
-                        v.config.center.key == 'm_stone' or
-                        v.config.center.key == 'm_gold' or
-                        v.config.center.key == 'm_watsau_reinforced' then
-                        
-                        v:set_ability(G.P_CENTERS.m_watsau_molten, nil, true) --change to Molten
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                                v:juice_up()
-                                return true
-                            end
-                        })) 
-                    end
 
                     if  v.config.center.key == 'm_bonus' or
                         v.config.center.key == 'm_lucky' or
@@ -89,10 +70,9 @@ SMODS.Joker{
             end
 
             if #unmelted > 0 then 
-                card.ability.extra.HP = card.ability.extra.HP - #unmelted
                 return {
-                    message = {"HA"},
-                    colour = G.C.MULT,
+                    message = "Burn!",
+                    colour = G.C.FILTER,
                     card = card
                 }
             end
