@@ -28,7 +28,14 @@ return {
 
         },
         Joker={
-
+            j_watsau_concvssion = {
+                name = 'Concvssion',
+                text = {
+                    'Makes {C:chips}Chips{} and {C:mult}Mult{}',
+                    'into multiples of #1# when',
+                    'this Joker is triggered'
+                }
+            }
         },
         Other={
             tooltip_non_metal = {

@@ -11,7 +11,7 @@ SMODS.Joker{
     },
     atlas = 'watsau_jokers', --atlas' key
     pos = {x = 1, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
-    rarity = 4, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
     cost = 6, --cost
     unlocked = true, --where it is unlocked or not: if true, 

@@ -5,6 +5,7 @@ SMODS.Joker{
         text = {
             'Earn {C:money}10${}',
             'at end of round'
+            '{C:inactive}WIP Joker{}'
         }
     },
     atlas = 'watsau_jokers',                       --atlas' key
