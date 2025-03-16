@@ -36,7 +36,7 @@ assert(SMODS.load_file("./modules/jokers/test_joker.lua"))()
 assert(SMODS.load_file("./modules/jokers/haze.lua"))() 
 assert(SMODS.load_file("./modules/jokers/der_richter.lua"))()
 assert(SMODS.load_file("./modules/jokers/myrtle.lua"))() 
--- assert(SMODS.load_file("./modules/jokers/surtr.lua"))() 
+assert(SMODS.load_file("./modules/jokers/surtr.lua"))() 
 assert(SMODS.load_file("./modules/jokers/burn.lua"))()
 assert(SMODS.load_file("./modules/jokers/concvssion.lua"))() 
 
