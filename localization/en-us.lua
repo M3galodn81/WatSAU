@@ -19,6 +19,20 @@ return {
                     "[Chips and Mult], All Jokers",
                     "and its' order are flipped",
                 }
+            },
+            bl_watsau_final_unraveling_stasis = {
+                name = "Unraveling Stasis",
+                text = {
+                    "Blind requirements are multipled ",
+                    "by 1.1 per played hand"
+                }
+            },
+            bl_watsau_final_mazarines_end = {
+                name = "Unraveling Stasis",
+                text = {
+                    "If played hand contains 3,2,and 1",
+                    ", then hands and discards is set to 1 "
+                }
             }
         },
         Edition={
@@ -34,6 +48,17 @@ return {
                     'Makes {C:chips}Chips{} and {C:mult}Mult{}',
                     'into multiples of #1# when',
                     'this Joker is triggered'
+                }
+            },
+            j_watsau_jackhammer = {
+                name = 'Jackhammer',
+                text = {
+                    'If the number of remaining hands in the current round',
+                    'is the same as the number of remaining hands when you',
+                    'first finished a round with this Joker, then this Joker',
+                    'gains {X:mult,C:white}X1{} Mult, otherwise it will reset back to {X:mult,C:white}X1{}',
+                    '{C:inactive}Currently, this Joker has{} {X:mult,C:white}X#3#{}{C:inactive} Mult{}',
+                    '{C:inactive}Remaining Hands:{} {C:chips}#2#{}'
                 }
             }
         },

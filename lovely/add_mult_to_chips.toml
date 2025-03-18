@@ -1,0 +1,916 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# logic so i will not suffer i lot
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+function Card:calculate_joker(context)
+    if self.debuff then return nil end
+'''
+position = "at"
+payload = '''
+function Card:calculate_joker(context)
+    local is_switch_add_mult_active = false
+    if G.GAME.blind.name == 'Small Blind' then
+        is_switch_add_mult_active = true
+    end 
+
+    if self.debuff then return nil end
+'''
+match_indent = true
+overwrite = false
+
+# joker list that add mult
+
+# abstract_joker (1/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+local x = 0
+for i = 1, #G.jokers.cards do
+    if G.jokers.cards[i].ability.set == 'Joker' then x = x + 1 end
+end
+return {
+    message = localize{type='variable',key='a_mult',vars={x*self.ability.extra}},
+    mult_mod = x*self.ability.extra
+}
+'''
+position = "at"
+payload = '''
+local x = 0
+for i = 1, #G.jokers.cards do
+    if G.jokers.cards[i].ability.set == 'Joker' then x = x + 1 end
+end
+if is_switch_add_mult_active then
+    return {
+        message = localize{type='variable',key='a_chips',vars={x*self.ability.extra}},
+        chip_mod = x*self.ability.extra
+    }
+else
+    return {
+        message = localize{type='variable',key='a_mult',vars={x*self.ability.extra}},
+        mult_mod = x*self.ability.extra
+    }
+end
+
+'''
+match_indent = true
+overwrite = false
+
+# bootstraps (2/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Bootstraps' and math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars) >= 1 then 
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.extra.mult*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars)}},
+        mult_mod = self.ability.extra.mult*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars)
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Bootstraps' and math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars) >= 1 then 
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.extra.mult*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars)}},
+            chip_mod = self.ability.extra.mult*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars)
+        }
+    else
+        return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.extra.mult*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars)}},
+        mult_mod = self.ability.extra.mult*math.floor((G.GAME.dollars + (G.GAME.dollar_buffer or 0))/self.ability.extra.dollars)
+    }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# if is_switch_add_mult_active then
+
+# else
+
+# end
+
+
+# ceremonial dagger (3/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Ceremonial Dagger' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Ceremonial Dagger' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# suit jokers (7/33) 4 5 6 7
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.t_mult > 0 and next(context.poker_hands[self.ability.type]) then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.t_mult}},
+        mult_mod = self.ability.t_mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.t_mult > 0 and next(context.poker_hands[self.ability.type]) then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.t_mult}},
+            chip_mod = self.ability.t_mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.t_mult}},
+            mult_mod = self.ability.t_mult
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# hand jokers (12/33)  8 9 10 11 12
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.effect == 'Suit Mult' and
+    context.other_card:is_suit(self.ability.extra.suit) then
+    return {
+        mult = self.ability.extra.s_mult,
+        card = self
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.effect == 'Suit Mult' and
+    context.other_card:is_suit(self.ability.extra.suit) then
+    if is_switch_add_mult_active then
+        return {
+            chips = self.ability.extra.s_mult,
+            card = self
+        }
+    else
+        return {
+            mult = self.ability.extra.s_mult,
+            card = self
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# erosion (13/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Erosion' and (G.GAME.starting_deck_size - #G.playing_cards) > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.extra*(G.GAME.starting_deck_size - #G.playing_cards)}},
+        mult_mod = self.ability.extra*(G.GAME.starting_deck_size - #G.playing_cards), 
+        colour = G.C.MULT
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Erosion' and (G.GAME.starting_deck_size - #G.playing_cards) > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.extra*(G.GAME.starting_deck_size - #G.playing_cards)}},
+            chip_mod = self.ability.extra*(G.GAME.starting_deck_size - #G.playing_cards), 
+            colour = G.C.CHIPS
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.extra*(G.GAME.starting_deck_size - #G.playing_cards)}},
+            mult_mod = self.ability.extra*(G.GAME.starting_deck_size - #G.playing_cards), 
+            colour = G.C.MULT
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# even steven (14/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Even Steven' and
+context.other_card:get_id() <= 10 and 
+context.other_card:get_id() >= 0 and
+context.other_card:get_id()%2 == 0
+then
+    return {
+        mult = self.ability.extra,
+        card = self
+    }
+end 
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Even Steven' and
+context.other_card:get_id() <= 10 and 
+context.other_card:get_id() >= 0 and
+context.other_card:get_id()%2 == 0
+then
+    if is_switch_add_mult_active then
+        return {
+            chips = self.ability.extra,
+            card = self
+        }
+    else
+        return {
+            mult = self.ability.extra,
+            card = self
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# fibonacci (15/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Fibonacci' and (
+context.other_card:get_id() == 2 or 
+context.other_card:get_id() == 3 or 
+context.other_card:get_id() == 5 or 
+context.other_card:get_id() == 8 or 
+context.other_card:get_id() == 14) then
+    return {
+        mult = self.ability.extra,
+        card = self
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Fibonacci' and (
+context.other_card:get_id() == 2 or 
+context.other_card:get_id() == 3 or 
+context.other_card:get_id() == 5 or 
+context.other_card:get_id() == 8 or 
+context.other_card:get_id() == 14) then
+    if is_switch_add_mult_active then
+        return {
+            chips = self.ability.extra,
+            card = self
+        }
+    else
+        return {
+            mult = self.ability.extra,
+            card = self
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# flash card (16/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Flash Card' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Flash Card' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# fortune teller (17/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Fortune Teller' and G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.tarot > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={G.GAME.consumeable_usage_total.tarot}},
+        mult_mod = G.GAME.consumeable_usage_total.tarot
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Fortune Teller' and G.GAME.consumeable_usage_total and G.GAME.consumeable_usage_total.tarot > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={G.GAME.consumeable_usage_total.tarot}},
+            chip_mod = G.GAME.consumeable_usage_total.tarot
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={G.GAME.consumeable_usage_total.tarot}},
+            mult_mod = G.GAME.consumeable_usage_total.tarot
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# Green Joker (18/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Green Joker' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Green Joker' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# gros michel (19/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Gros Michel' then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.extra.mult}},
+        mult_mod = self.ability.extra.mult,
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Gros Michel' then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.extra.mult}},
+            chip_mod = self.ability.extra.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.extra.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Half Joker (20/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Half Joker' and #context.full_hand <= self.ability.extra.size then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.extra.mult}},
+        mult_mod = self.ability.extra.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Half Joker' and #context.full_hand <= self.ability.extra.size then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.extra.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.extra.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Joker (21/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Joker' then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Joker' then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Misprint (22/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Misprint' then
+    local temp_Mult = pseudorandom('misprint', self.ability.extra.min, self.ability.extra.max)
+    return {
+        message = localize{type='variable',key='a_mult',vars={temp_Mult}},
+        mult_mod = temp_Mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Misprint' then
+    local temp_Mult = pseudorandom('misprint', self.ability.extra.min, self.ability.extra.max)
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={temp_Mult}},
+            chip_mod = temp_Mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={temp_Mult}},
+            mult_mod = temp_Mult
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# Mystic Summit (23/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Mystic Summit' and G.GAME.current_round.discards_left == self.ability.extra.d_remaining then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.extra.mult}},
+        mult_mod = self.ability.extra.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Mystic Summit' and G.GAME.current_round.discards_left == self.ability.extra.d_remaining then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.extra.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.extra.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Popcorn (24/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Popcorn' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Popcorn' and self.ability.mult > 0 then
+    if context.other_card.debuff then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# Raised Fist (25/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if raised_card == context.other_card then 
+    if context.other_card.debuff then
+        return {
+            message = localize('k_debuffed'),
+            colour = G.C.RED,
+            card = self,
+        }
+    else
+        return {
+            h_mult = 2*temp_Mult,
+            card = self,
+        }
+    end
+end
+'''
+position = "at"
+payload = '''
+if raised_card == context.other_card then 
+    if context.other_card.debuff then
+        return {
+            message = localize('k_debuffed'),
+            colour = G.C.RED,
+            card = self,
+        }
+    else
+        if is_switch_add_mult_active then
+            return {
+                h_chips = 2*temp_Mult,
+                card = self,
+            }
+        else
+            return {
+                h_mult = 2*temp_Mult,
+                card = self,
+            }
+        end
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Red Card (26/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Red Card' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Red Card' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Ride the Bus (27/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Ride the Bus' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Ride the Bus' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Shoot the moon (28/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+context.other_card:get_id() == 12 then
+if context.other_card.debuff then
+    return {
+        message = localize('k_debuffed'),
+        colour = G.C.RED,
+        card = self,
+    }
+else
+    if is_switch_add_mult_active then
+        return {
+            h_mult = 13,
+            card = self
+        }
+    else
+        return {
+            h_mult = 13,
+            card = self
+        }
+    end
+    
+end
+'''
+position = "at"
+payload = '''
+context.other_card:get_id() == 12 then
+if context.other_card.debuff then
+    return {
+        message = localize('k_debuffed'),
+        colour = G.C.RED,
+        card = self,
+    }
+else
+    return {
+        h_mult = 13,
+        card = self
+    }
+end
+'''
+match_indent = true
+overwrite = false
+
+# Smiley face (29/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+context.other_card:is_face()) then
+    return {
+        mult = self.ability.extra,
+        card = self
+    }
+end
+'''
+position = "at"
+payload = '''
+context.other_card:is_face()) then
+    if is_switch_add_mult_active then
+        return {
+            chips = self.ability.extra,
+            card = self
+        }
+    else 
+        return {
+            mult = self.ability.extra,
+            card = self
+        }
+    end
+    
+end
+'''
+match_indent = true
+overwrite = false
+
+# Spare thougrwqe (30/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Spare Trousers' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Spare Trousers' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Supernova (31/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Supernova' then
+    return {
+        message = localize{type='variable',key='a_mult',vars={G.GAME.hands[context.scoring_name].played}},
+        mult_mod = G.GAME.hands[context.scoring_name].played
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Supernova' then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={G.GAME.hands[context.scoring_name].played}},
+            chip_mod = G.GAME.hands[context.scoring_name].played
+        }
+    else 
+        return {
+            message = localize{type='variable',key='a_mult',vars={G.GAME.hands[context.scoring_name].played}},
+            mult_mod = G.GAME.hands[context.scoring_name].played
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Swashbuckler (32/33)
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Swashbuckler' and self.ability.mult > 0 then
+    return {
+        message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+        mult_mod = self.ability.mult
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Swashbuckler' and self.ability.mult > 0 then
+    if is_switch_add_mult_active then
+        return {
+            message = localize{type='variable',key='a_chips',vars={self.ability.mult}},
+            chip_mod = self.ability.mult
+        }
+    else
+        return {
+            message = localize{type='variable',key='a_mult',vars={self.ability.mult}},
+            mult_mod = self.ability.mult
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false
+
+# Onyx Agate (33/33) i forgor
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.ability.name == 'Onyx Agate' and
+context.other_card:is_suit("Clubs") then
+    return {
+        mult = self.ability.extra,
+        card = self
+    }
+end
+'''
+position = "at"
+payload = '''
+if self.ability.name == 'Onyx Agate' and
+context.other_card:is_suit("Clubs") then
+    if is_switch_add_mult_active then
+        return {
+            chips = self.ability.extra,
+            card = self
+        }
+    else
+        return {
+            mult = self.ability.extra,
+            card = self
+        }
+    end
+end
+'''
+match_indent = true
+overwrite = false

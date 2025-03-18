@@ -19,7 +19,17 @@ SMODS.Blind{
 
     }, 
 
+    
+
     press_play = function(self)
-       
+        
     end
+
+    debuff_card = function(self, cards, hand, handname, check)
+
+        if not self.disabled and context.cardarea == G.jokers then
+            -- All additive modifiers to Mult affect Chips instead
+        end
+    end
+    
 }

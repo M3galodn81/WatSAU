@@ -39,6 +39,7 @@ assert(SMODS.load_file("./modules/jokers/myrtle.lua"))()
 assert(SMODS.load_file("./modules/jokers/surtr.lua"))() 
 assert(SMODS.load_file("./modules/jokers/burn.lua"))()
 assert(SMODS.load_file("./modules/jokers/concvssion.lua"))() 
+assert(SMODS.load_file("./modules/jokers/jackhammer.lua"))() 
 
 
 -- Load Consumables
@@ -49,6 +50,7 @@ assert(SMODS.load_file("./modules/blinds/distorted_fate.lua"))()
 -- assert(SMODS.load_file("./modules/blinds/broken_sky.lua"))() 
 assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))() 
 assert(SMODS.load_file("./modules/blinds/inverted_world.lua"))() 
+assert(SMODS.load_file("./modules/blinds/unraveling_stasis.lua"))() 
 
 
 -- Load Enhancements
