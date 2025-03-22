@@ -1,5 +1,5 @@
 # Blinds
-- [ ] add basically every HSR Paths
+- [ ] 
 
 
 # Booster Packs
@@ -16,7 +16,7 @@
 
 # Jokers
 - [ ] Surtr : yes
-- [ ] 
+- [ ] insert almost every character from every RG EXCEPT every char in Rayark's Games (personal reasons), any idol from every RG  (it will take me years for the art/effects and probably it exists on other mods) and any Roblox RGs.   
 
 # Voucher
 
@@ -26,3 +26,7 @@
 # Sticker
 
 # Tags
+
+# Rarity
+- [ ] Stellar
+    -   higher than legendary

@@ -11,7 +11,7 @@
 SMODS.optional_features.cardareas.unscored = true
 ----------------------------------------------
 
--- Joker Atlas
+-- Joker/Enhancement Atlas
 SMODS.Atlas{
     key = 'watsau_jokers', --atlas key
     path = 'jokers.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
@@ -20,7 +20,6 @@ SMODS.Atlas{
 }
 
 -- Blind Atlas
-
 SMODS.Atlas{
     key = 'watsau_blinds', --atlas key
     path = 'blinds.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
@@ -30,6 +29,8 @@ SMODS.Atlas{
     frames = 21,
 }
 
+--Load Config Tab
+-- assert(SMODS.load_file("./modules/ui/tab_config.lua"))() 
 
 -- Load Jokers
 assert(SMODS.load_file("./modules/jokers/test_joker.lua"))() 
@@ -40,6 +41,8 @@ assert(SMODS.load_file("./modules/jokers/surtr.lua"))()
 assert(SMODS.load_file("./modules/jokers/burn.lua"))()
 assert(SMODS.load_file("./modules/jokers/concvssion.lua"))() 
 assert(SMODS.load_file("./modules/jokers/jackhammer.lua"))() 
+assert(SMODS.load_file("./modules/jokers/inferior.lua"))() 
+assert(SMODS.load_file("./modules/jokers/einherjar.lua"))() 
 
 
 -- Load Consumables
@@ -47,12 +50,12 @@ assert(SMODS.load_file("./modules/jokers/jackhammer.lua"))()
 -- Load Blinds
 -- assert(SMODS.load_file("./modules/blinds/mazarines_end.lua"))() 
 assert(SMODS.load_file("./modules/blinds/distorted_fate.lua"))() 
--- assert(SMODS.load_file("./modules/blinds/broken_sky.lua"))() 
-assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))() 
 assert(SMODS.load_file("./modules/blinds/inverted_world.lua"))() 
 assert(SMODS.load_file("./modules/blinds/unraveling_stasis.lua"))() 
 
-
+-- assert(SMODS.load_file("./modules/blinds/broken_sky.lua"))() 
+assert(SMODS.load_file("./modules/blinds/shatter_switch.lua"))() 
+assert(SMODS.load_file("./modules/blinds/the_flip.lua"))() 
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
 assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 

@@ -3,16 +3,15 @@ SMODS.Joker{
     loc_txt = {
         
     },
-    atlas = 'watsau_jokers', --atlas' key
-    pos = {x = 7, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
-    rarity = 4, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
-    --soul_pos = { x = 0, y = 0 },
-    cost = 100, --cost
-    unlocked = true, --where it is unlocked or not: if true, 
-    discovered = true, --whether or not it starts discovered
-    blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    atlas = 'watsau_jokers', 
+    pos = {x = 7, y = 0}, 
+    rarity = 4, 
+    cost = 20, 
+    unlocked = true, 
+    discovered = true, 
+    blueprint_compat = true, 
+    eternal_compat = false, 
+    perishable_compat = false, 
     
     config = { 
         extra = {
@@ -28,12 +27,26 @@ SMODS.Joker{
             local add_mult = mult % card.ability.extra.base
             local add_chips = hand_chips % card.ability.extra.base
 
-           
-            -- lua moment
+            local mult_mod = 0
+            local chip_mod = 0
+
+            if add_mult > 0 then
+                mult_mod = card.ability.extra.base - add_mult
+            else
+                mult_mod = 0
+            end
+
+            if add_chips > 0 then
+                chip_mod = card.ability.extra.base - add_chips
+            else
+                chip_mod = 0
+            end
+
             return {
-                mult_mod = (add_mult > 0 and (card.ability.extra.base - add_mult) or 0),
-                chip_mod = (add_chips > 0 and (card.ability.extra.base - add_chips) or 0)
+                mult_mod = mult_mod,
+                chip_mod = chip_mod
             }
+
         end
 
         if context.final_scoring_step and context.cardarea == G.play then

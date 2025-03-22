@@ -15,7 +15,7 @@ position = "at"
 payload = '''
 function Card:calculate_joker(context)
     local is_switch_add_mult_active = false
-    if G.GAME.blind.name == 'Small Blind' then
+    if G.GAME.blind.name == 'bl_watsau_the_flip' then
         is_switch_add_mult_active = true
     end 
 
