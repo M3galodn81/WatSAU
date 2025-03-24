@@ -12,10 +12,18 @@ SMODS.Blind{
 
     }, 
 
+    disable = function(self)
+        for k, v in ipairs(G.jokers.cards) do
+            v.pinned = false
+        end
+    end,
+
+
     set_blind = function(self)
         if not reset and #G.jokers.cards > 0 then
             G.jokers:unhighlight_all()
             for k, v in ipairs(G.jokers.cards) do
+                v.pinned = true
                 v:flip()
             end
             if #G.jokers.cards > 1 then 

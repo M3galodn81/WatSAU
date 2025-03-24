@@ -1,0 +1,175 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# logic so i will not suffer i lot
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/utils.lua"]'''
+pattern = '''if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then'''
+position = "before"
+payload = '''
+is_boss_add_chips_active = false
+if G.GAME.blind.name == 'bl_watsau_the_flip' then
+    is_boss_add_chips_active = true
+end
+
+'''
+match_indent = true
+overwrite = false
+
+# smods/src/utils.lua
+# modify it when blind is true
+
+# replace +Mult into +Chips pain
+# Line 1124
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/utils.lua"]'''
+pattern = """if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
+        mult = mod_mult(mult + amount)
+        update_hand_text({delay = 0}, {chips = hand_chips, mult = mult})
+        if not effect.remove_default_message then
+            if from_edition then
+                card_eval_status_text(scored_card, 'jokers', nil, percent, nil, {message = localize{type = 'variable', key = amount > 0 and 'a_mult' or 'a_mult_minus', vars = {amount}}, mult_mod = amount, colour = G.C.DARK_EDITION, edition = true})
+            else
+                if key ~= 'mult_mod' then
+                    if effect.mult_message then
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, effect.mult_message)
+                    else
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'mult', amount, percent)
+                    end
+                end
+            end
+        end
+        return true
+    end"""
+position = "at"
+payload = """
+if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
+    if is_boss_add_chips_active == true then
+        hand_chips = mod_chips(hand_chips + amount)
+        update_hand_text({delay = 0}, {chips = hand_chips, mult = mult})
+        if not effect.remove_default_message then
+            if from_edition then
+                card_eval_status_text(scored_card, 'jokers', nil, percent, nil, {message = localize{type = 'variable', key = amount > 0 and 'a_chips' or 'a_chips_minus', vars = {amount}}, chip_mod = amount, colour = G.C.EDITION, edition = true})
+            else
+                if key ~= 'mult_mod' then
+                    if effect.chip_message then
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, effect.chip_message)
+                    else
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'chips', amount, percent)
+                    end
+                end
+            end
+        end
+        return true
+    else
+        mult = mod_mult(mult + amount)
+        update_hand_text({delay = 0}, {chips = hand_chips, mult = mult})
+        if not effect.remove_default_message then
+            if from_edition then
+                card_eval_status_text(scored_card, 'jokers', nil, percent, nil, {message = localize{type = 'variable', key = amount > 0 and 'a_mult' or 'a_mult_minus', vars = {amount}}, mult_mod = amount, colour = G.C.DARK_EDITION, edition = true})
+            else
+                if key ~= 'mult_mod' then
+                    if effect.mult_message then
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, effect.mult_message)
+                    else
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'mult', amount, percent)
+                    end
+                end
+            end
+        end
+        return true
+
+    end
+end
+"""
+match_indent = true
+overwrite = false
+
+# # 733
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "if effects[ii].extra.mult_mod then mult =mod_mult( mult + effects[ii].extra.mult_mod);extras.mult = true end"
+# position = "at"
+# payload = """if is_boss_add_chips_active = true then
+#     if effects[ii].extra.mult_mod then hand_chips = mod_chips(hand_chips + effects[ii].extra.mult_mod);extras.hand_chips = true end
+# else
+#     if effects[ii].extra.mult_mod then mult =mod_mult( mult + effects[ii].extra.mult_mod);extras.mult = true end
+# end
+# """
+# match_indent = true
+# overwrite = false
+
+# # 761
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "mult = mult + (effects[ii].edition.mult_mod or 0)"
+# position = "at"
+# payload = """if is_boss_add_chips_active = true then
+#     hand_chips = mod_chips(hand_chips + (effects[ii].edition.mult_mod or 0))
+# else
+#     mult = mult + (effects[ii].edition.mult_mod or 0)
+# end
+# """
+# match_indent = true
+# overwrite = false
+
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "mult = mod_mult(mult + effects[ii].h_mult)"
+# position = "at"
+# payload = """if is_boss_add_chips_active = true then
+#     hand_chips = mod_chips(hand_chips + effects[ii].h_mult)
+# else
+#     mult = mod_mult(mult + effects[ii].h_mult)
+# end
+# """
+# match_indent = true
+
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "mult = mod_mult(mult + edition_effects.jokers.mult_mod)"
+# position = "at"
+# payload = """if is_boss_add_chips_active = true then
+#     hand_chips = mod_chips(hand_chips + edition_effects.jokers.mult_mod)
+# else
+#     mult = mod_mult(mult + edition_effects.jokers.mult_mod)
+# end
+# """
+# match_indent = true
+
+
+
+
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "if effects.jokers.mult_mod then mult = mod_mult(mult + effects.jokers.mult_mod);extras.mult = true end"
+# position = "at"
+# payload = """if is_boss_add_chips_active = true then
+#     if effects.jokers.mult_mod then hand_chips = mod_chips(hand_chips + effects.jokers.mult_mod);extras.hand_chips = true end
+# else
+#     if effects.jokers.mult_mod then mult = mod_mult(mult + effects.jokers.mult_mod);extras.mult = true end
+# end
+# """
+# match_indent = true
+
+# [[patches]]
+# [patches.pattern]
+# target = "functions/state_events.lua"
+# pattern = "if effect.mult_mod then mult = mod_mult(mult + effect.mult_mod);extras.mult = true end"
+# position = "at"
+# payload = """if is_boss_add_chips_active = true then
+#     if effect.mult_mod then hand_chips = mod_chips(hand_chips + effect.mult_mod);extras.chips = true end
+# else
+#     if effect.mult_mod then mult = mod_mult(mult + effect.mult_mod);extras.mult = true end
+# end
+# """
+# match_indent = true

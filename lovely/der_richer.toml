@@ -3,6 +3,8 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
+# Thank you to Victin for showing how to make this 
+
 # check if der richter is in deck
 [[patches]]
 [patches.pattern]
@@ -24,7 +26,7 @@ end
 match_indent = true
 overwrite = false
 
-
+# add condition in plasma deck activation
 [[patches]]
 [patches.pattern]
 target = "back.lua"
@@ -36,7 +38,7 @@ if ((self.name == 'Plasma Deck') and args.context == 'final_scoring_step') or (i
 match_indent = true
 overwrite = true
 
-# visual 
+# remove visual 
 [[patches]]
 [patches.pattern]
 target = "back.lua"

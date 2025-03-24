@@ -1,7 +1,7 @@
 -- Arcaea
 SMODS.Joker{
     key = 'einherjar',
-    atlas = 'watsau_jokers',                      
+    atlas = 'watsau_jokers',                 
     pos = {x = 3, y = 0},                  
     rarity = 1,                             
     cost = 5,                             
@@ -10,7 +10,7 @@ SMODS.Joker{
     blueprint_compat = false,               
     eternal_compat = true,                  
     perishable_compat = true,               
-    
+
     config = { 
         extra = {
             x_mult = 1
@@ -54,5 +54,8 @@ SMODS.Joker{
 
     end,
 
+    set_badges = function(self, card, badges)
+
+    end,
 
 }

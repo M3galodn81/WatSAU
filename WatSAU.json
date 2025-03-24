@@ -12,8 +12,11 @@
 	"display_name": "WatSAU", 
 	"version": "0.1.0~pre-alpha", 
     "dependencies":[
+
 	],
-	"conflicts": [], 
+	"conflicts": [
+		"Cryptid (<=0.5.5)"
+	], 
 	"provides": [], 
 	"dump_loc": false
 }

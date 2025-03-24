@@ -16,8 +16,9 @@ return {
             bl_watsau_final_inverted_world = {
                 name = "Inverted World",
                 text = {
-                    "Chips and Mult, All Jokers",
-                    "and its' order are flipped",
+                    "Chips and Mult values are flipped,",
+                    "All Jokers are pinned ",
+                    "and its' order are flipped ",
                 }
             },
             bl_watsau_final_unraveling_stasis = {
@@ -39,10 +40,16 @@ return {
                 text = {
                     'All additive modifiers to Mult',
                     'from Jokers affect Chips instead',
-                    '(Vanilla Jokers only since I patch)',
-                    '(every card :sob: pls me help me AAAAAAA!)'
+                    '(I think I did but I need to remove)',
+                    '(the extra messagte :sob: pls me help me AAAAAAA!)'
                 }
-            }
+            },
+            bl_watsau_the_ace = {
+                name = "The Ace",
+                text = {
+                    'All Aces are Debuffed',
+                }
+            },
         },
         Edition={
 
@@ -93,7 +100,7 @@ return {
                 text = {
                     'When picking a blind, destroys other Jokers',
                     'and gain {X:mult,C:white}×1{} per Joker destroyed',
-                    '{C:inactive}Currently gives:{} {X:mult,C:white}#1#{}{C:inactive} Mult{}'
+                    '{C:inactive}Currently gives:{} {X:mult,C:white}×#1#{}{C:inactive} Mult{}'
                 }
             }
         },
@@ -140,10 +147,13 @@ return {
 
         },
         collabs={
-
+            
         },
         dictionary={
-
+            -- Badges
+            k_arcaea = "Arcaea",
+            k_phigros = "Phigros",
+            k_arknights = "Arknights",
         },
         high_scores={
 

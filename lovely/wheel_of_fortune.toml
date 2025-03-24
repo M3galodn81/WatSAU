@@ -1,0 +1,62 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# add pity in cards
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = """           
+self.debuff = false
+"""
+position = "after"
+payload = '''
+
+self.pity = 0
+self.pity_limit = nil
+
+'''
+match_indent = true
+overwrite = false
+
+
+# add pity in cards
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = """           
+c_wheel_of_fortune= {order = 11,    discovered = false, cost = 3, consumeable = true, name = "The Wheel of Fortune", pos = {x=0,y=1}, set = "Tarot", effect = "Round Bonus", cost_mult = 1.0, config = {extra = 4}},
+"""
+position = "at"
+payload = '''
+c_wheel_of_fortune= {order = 11,    discovered = false, cost = 3, pity_limit = 3, consumeable = true, name = "The Wheel of Fortune", pos = {x=0,y=1}, set = "Tarot", effect = "Round Bonus", cost_mult = 1.0, config = {extra = 4}},
+'''
+match_indent = true
+overwrite = false
+
+
+# if limit hit then proc
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = """           
+if self.ability.name == 'Ectoplasm' or self.ability.name == 'Hex' or pseudorandom('wheel_of_fortune') < G.GAME.probabilities.normal/self.ability.extra then 
+"""
+position = "at"
+payload = '''
+
+local wheel_random_proc = pseudorandom('wheel_of_fortune') < G.GAME.probabilities.normal/self.ability.extra
+local wheel_pity_proc = (self.pity >= self.pity_limit)  
+print(wheel_random_proc)
+print(self.pity)
+print(self.pity_limit)
+print(wheel_pity_proc)
+if self.ability.name == 'Ectoplasm' or self.ability.name == 'Hex' or wheel_random_proc or wheel_pity_proc then
+if self.ability.name == 'The Wheel of Fortune'  then
+    self.pity = 0
+end
+
+'''
+match_indent = true
+overwrite = false
