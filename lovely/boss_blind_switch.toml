@@ -7,8 +7,8 @@ priority = 0
 [[patches]]
 [patches.pattern]
 target = '''=[SMODS _ "src/utils.lua"]'''
-pattern = '''if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then'''
-position = "before"
+pattern = '''SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)'''
+position = "after"
 payload = '''
 is_boss_add_chips_active = false
 if G.GAME.blind.name == 'bl_watsau_the_flip' then
@@ -23,7 +23,6 @@ overwrite = false
 # modify it when blind is true
 
 # replace +Mult into +Chips pain
-# Line 1124
 [[patches]]
 [patches.pattern]
 target = '''=[SMODS _ "src/utils.lua"]'''
@@ -59,11 +58,22 @@ if (key == 'mult' or key == 'h_mult' or key == 'mult_mod') and amount then
                     if effect.chip_message then
                         card_eval_status_text(scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, effect.chip_message)
                     else
-                        card_eval_status_text(scored_card or effect.card or effect.focus, 'chips', amount, percent)
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'chips', amount, percent, nil, effect.chip_message)
                     end
+                else
+                    if string.match(amount, "%+%d+ Mult") then
+                        print("Match " .. amount .. "/ key : " .. key)
+                        amount = string.match(amount, "%+?(%d+)")
+                        card_eval_status_text(scored_card or effect.card or effect.focus, 'chips', amount, percent, nil, effect.chip_message)
+                    else
+                        print("No match." .. amount)
+                    end
+                    
                 end
+
             end
         end
+
         return true
     else
         mult = mod_mult(mult + amount)
@@ -89,20 +99,67 @@ end
 match_indent = true
 overwrite = false
 
-# # 733
-# [[patches]]
-# [patches.pattern]
-# target = "functions/state_events.lua"
-# pattern = "if effects[ii].extra.mult_mod then mult =mod_mult( mult + effects[ii].extra.mult_mod);extras.mult = true end"
-# position = "at"
-# payload = """if is_boss_add_chips_active = true then
-#     if effects[ii].extra.mult_mod then hand_chips = mod_chips(hand_chips + effects[ii].extra.mult_mod);extras.hand_chips = true end
-# else
-#     if effects[ii].extra.mult_mod then mult =mod_mult( mult + effects[ii].extra.mult_mod);extras.mult = true end
-# end
-# """
-# match_indent = true
-# overwrite = false
+# patch message thingy
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/utils.lua"]'''
+pattern = """if key == 'message' then
+        card_eval_status_text(effect.message_card or effect.juice_card or scored_card or effect.card or effect.focus, 'extra', nil, percent, nil, effect)
+        return true
+    end"""
+position = "at"
+payload = """
+if key == 'message'  then 
+    if is_boss_add_chips_active == true then
+        print("EXTRA" .. amount)
+        if string.match(amount, "%+%d+ Mult") then
+            amount = tonumber(string.match(amount, "%+?(%d+)"))
+            card_eval_status_text(scored_card or effect.card or effect.focus, 'chips', amount, percent, nil, effect.chip_message)
+            return true
+        end
+    else
+        return SMODS.calculate_effect(amount, scored_card)
+    end
+end
+"""
+match_indent = true
+overwrite = false
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = """if not extra.edition and (extra.mult_mod or extra.Xmult_mod)  then
+            colour = G.C.MULT
+        end"""
+position = "at"
+payload = """if is_boss_add_chips_active = true then
+    if not extra.edition and (extra.mult_mod)  then
+            colour = G.C.CHIPS
+        end
+        if not extra.edition and (extra.Xmult_mod)  then
+            colour = G.C.MULT
+        end
+else
+    if not extra.edition and (extra.mult_mod or extra.Xmult_mod)  then
+            colour = G.C.MULT
+        end
+end
+"""
+match_indent = true
+overwrite = false
 
 # # 761
 # [[patches]]

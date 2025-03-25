@@ -10,7 +10,20 @@
 
 
 # Consumables
+- Anomaly
+    Phigros
+    - Destruction   : 
+    - Rebirth
+    
+    Arcaea
+    - Creation
+    - Catastrophe 
 
+    - Corruption
+    - Restoration
+
+    - Awakening
+    - Fragmentation
 
 # Edition
 - [ ] Melted Steel : 4x Mult then destroy itself 

@@ -1,12 +1,5 @@
 SMODS.Joker{
     key = 'burn',
-    loc_txt = {
-        name = 'Burn',
-        text = {
-            'Burn every {C:attention}non-metallic{} cards',
-            'into {C:attention}Burnt Cards{}'
-        }
-    },
     atlas = 'watsau_jokers',                   
     pos = {x = 6, y = 0},                   
     rarity = 3,                            

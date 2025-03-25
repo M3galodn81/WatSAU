@@ -50,6 +50,7 @@ assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))()
 
 -- Arcaea
 assert(SMODS.load_file("./modules/jokers/arcaea/einherjar.lua"))() 
+assert(SMODS.load_file("./modules/jokers/arcaea/tempestissimo.lua"))() 
 
 -- Random
 assert(SMODS.load_file("./modules/jokers/random/haze.lua"))() 

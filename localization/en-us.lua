@@ -75,9 +75,9 @@ return {
                     -- 'gains {X:mult,C:white}X1{} Mult, otherwise it will reset back to {X:mult,C:white}X1{}',
                     -- '{C:inactive}Currently, this Joker has{} {X:mult,C:white}X#3#{}{C:inactive} Mult{}',
                     -- '{C:inactive}Remaining Hands during first round:{} {C:chips}#2#{}'
-                    'Gains {X:mult,C:white}×1{} Mult if you finish a round',
+                    'Gains {X:mult,C:white}X1{} Mult if you finish a round',
                     'with the same remaining hands as its first use;',
-                    ' otherwise, resets to {X:mult,C:white}×1{} Mult',
+                    ' otherwise, resets to {X:mult,C:white}X1{} Mult',
                     '{C:inactive}Remaining Hands during first round:{} {C:chips}#2#{}'
                 }
             },
@@ -99,10 +99,26 @@ return {
                 name = 'Einherjar Joker',
                 text = {
                     'When picking a blind, destroys other Jokers',
-                    'and gain {X:mult,C:white}×1{} per Joker destroyed',
-                    '{C:inactive}Currently gives:{} {X:mult,C:white}×#1#{}{C:inactive} Mult{}'
+                    'and gain {X:mult,C:white}X1{} per Joker destroyed',
+                    '{C:inactive}Currently gives:{} {X:mult,C:white}X#1#{}{C:inactive} Mult{}'
                 }
-            }
+            },
+            j_watsau_burn = {
+                name = 'Burn',
+                text = {
+                    'Burn every {C:attention}non-metallic{} cards',
+                    'into {C:attention}Burnt Cards{}'
+                }
+            },
+            j_watsau_tempestissimo = {
+                name = 'Tempestissimo',
+                text = {
+                    'Gains {X:mult,C:white}X0.25{} Mult if played hand',
+                    'is higher than #2#, otherwise blind requirements',
+                    'is multiplied by #3#',
+                    '{C:inactive}Currently gives:{} {X:mult,C:white}X#1#{}{C:inactive} Mult{}'
+                }
+            },
         },
         Other={
             tooltip_non_metal = {
