@@ -40,14 +40,20 @@ return {
                 text = {
                     'All additive modifiers to Mult',
                     'from Jokers affect Chips instead',
-                    '(I think I did but I need to remove)',
-                    '(the extra messagte :sob: pls me help me AAAAAAA!)'
+                }
+            },
+            bl_watsau_the_product = {
+                name = "The Product",
+                text = {
+                    'All multiplicative modifiers to Mult',
+                    'from Jokers will be additive instead',
                 }
             },
             bl_watsau_the_ace = {
                 name = "The Ace",
                 text = {
-                    'All Aces are Debuffed',
+                    'All Aces',
+                    'are Debuffed',
                 }
             },
         },
@@ -119,6 +125,28 @@ return {
                     '{C:inactive}Currently gives:{} {X:mult,C:white}X#1#{}{C:inactive} Mult{}'
                 }
             },
+            j_watsau_geopelia = {
+                name = 'Geopelia',
+                text = {
+                    '{X:mult,C:white}X#1#{} Mult',
+                    '{C:inactive,S:0.8}Becomes more powerful, if the boss{}',
+                    '{C:inactive,S:0.8}showdown blind is{}{C:attention,S:0.8} Distorted Fate{}'
+                }
+            },
+            j_watsau_cyanine = {
+                name = 'cyanine',
+                text = {
+                    'Gains {C:mult}#2#{} Mult for every played',
+                    '{C:inactive}Currently gives:{} {C:mult}#1#{}{C:inactive} Mult{}'
+                }
+            },
+            j_watsau_der_richter = {
+                name = 'Der Richter',
+                text = {
+                    'Balance {C:chips}Chips{} and {C:mult}Mult{}',
+                    'when this joker is triggered'
+                    }
+            },
         },
         Other={
             tooltip_non_metal = {
@@ -126,6 +154,13 @@ return {
                 text = {
                     "Bonus Card, Lucky Card, Wild Card,",
                     "Mult Card, and Base Card,"
+                }
+            },
+            tooltip_df = {
+                name = "Distorted Fate",
+                text = {
+                    "Disables a random Joker",
+                    "for each hand played"
                 }
             },
         },
@@ -167,15 +202,17 @@ return {
         },
         dictionary={
             -- Badges
-            k_arcaea = "Arcaea",
-            k_phigros = "Phigros",
-            k_arknights = "Arknights",
+            k_watsau_arcaea = "Arcaea",
+            
+            k_watsau_phigros = "Phigros",
+
+            k_watsau_stellar = "Stellar",
         },
         high_scores={
 
         },
         labels={
-
+            k_watsau_stellar = "Stellar",
         },
         poker_hand_descriptions={
 

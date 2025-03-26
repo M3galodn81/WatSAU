@@ -9,7 +9,7 @@ SMODS.Blind{
     pos = { x = 0, y = 3 },
 
     debuff = {
-        value = '14'
+        value = 'Ace'
     }, 
 
     set_blind = function(self)

@@ -3,27 +3,30 @@
 - Disruptor Array
 - Freedom Dive
 - Ultimate Force
- 
 
 
 # Booster Packs
+Anomaly
 
 
 # Consumables
 - Anomaly
     Phigros
     - Destruction   : 
-    - Rebirth
+    - Rebirth       :   
     
     Arcaea
-    - Creation
-    - Catastrophe 
+    - Creation      :
+    - Catastrophe   :
 
     - Corruption
     - Restoration
 
     - Awakening
     - Fragmentation
+
+- Note
+
 
 # Edition
 - [ ] Melted Steel : 4x Mult then destroy itself 
@@ -55,6 +58,7 @@
 - Astaroth
 - Nyarlathotep's Dreamland
 - Androgynos
+- stasis
 
 - CONVERGENCE
 - :3c

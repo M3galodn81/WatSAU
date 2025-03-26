@@ -43,9 +43,15 @@ if true then
     assert(SMODS.load_file("./modules/jokers/phigros/der_richter.lua"))()
     assert(SMODS.load_file("./modules/jokers/phigros/concvssion.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/inferior.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/phigros/geopelia.lua"))() 
 end
 
+-- Lanota
+assert(SMODS.load_file("./modules/jokers/lanota/cyanine.lua"))()
+
+
 -- BOF
+-- assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))() Aleph
 assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))()
 
 -- Arcaea
@@ -74,15 +80,17 @@ assert(SMODS.load_file("./modules/blinds/showdown/shatter_switch.lua"))()
 
 -- Boss Blinds
 assert(SMODS.load_file("./modules/blinds/boss/the_flip.lua"))()  --rename
+assert(SMODS.load_file("./modules/blinds/boss/the_product.lua"))()  --rename
 assert(SMODS.load_file("./modules/blinds/boss/the_ace.lua"))() 
 
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
 assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
 assert(SMODS.load_file("./modules/enhancement/burnt.lua"))() 
+-- assert(SMODS.load_file("./modules/enhancement/test.lua"))() 
 
-
-
+-- Load Rarity
+assert(SMODS.load_file("./modules/rarity.lua"))() 
 
 ------------ MOD CODE END ----------------------
 ----------------------------------------------

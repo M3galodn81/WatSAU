@@ -1,12 +1,5 @@
 SMODS.Joker{
     key = 'der_richter',
-    loc_txt = {
-        name = 'Der Richter',
-        text = {
-            'Balance {C:chips}Chips{} and {C:mult}Mult{}',
-            'when this joker is triggered'
-        }
-    },
     atlas = 'watsau_jokers', 
     pos = {x = 2, y = 0}, 
     rarity = 3, 
