@@ -34,6 +34,7 @@ SMODS.Joker{
         if context.setting_blind then
         end
 
+        -- TODO: Fix blind requirement not working
         if context.after and context.cardarea == G.jokers then
             
                 if card.ability.extra.active then
@@ -42,6 +43,7 @@ SMODS.Joker{
                         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
                         card.ability.extra.x_mult = 1
                         card.ability.extra.streak = 1 
+                        
                     else
                         card.ability.extra.x_mult = card.ability.extra.x_mult + 0.25
                         card.ability.extra.streak = card.ability.extra.streak + 1 

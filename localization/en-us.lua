@@ -56,6 +56,13 @@ return {
                     'are Debuffed',
                 }
             },
+            bl_watsau_the_glitch = {
+                name = "The Glitch",
+                text = {
+                    'Base Chips and Chips',
+                    'are randomized',
+                }
+            },
         },
         Edition={
 
@@ -136,7 +143,7 @@ return {
             j_watsau_cyanine = {
                 name = 'cyanine',
                 text = {
-                    'Gains {C:mult}#2#{} Mult for every played',
+                    'Gains {C:mult}#2#{} Mult for every played 9',
                     '{C:inactive}Currently gives:{} {C:mult}#1#{}{C:inactive} Mult{}'
                 }
             },

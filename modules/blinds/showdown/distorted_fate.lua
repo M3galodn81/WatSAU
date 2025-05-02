@@ -18,6 +18,11 @@ SMODS.Blind{
 
 
     drawn_to_hand = function(self)
+        
+    end,
+
+    press_play = function(self)
+
         local jokers = {}
         for i = 1, #G.jokers.cards do
             if not G.jokers.cards[i].debuff or #G.jokers.cards < 2 then jokers[#jokers+1] =G.jokers.cards[i] end
@@ -28,12 +33,10 @@ SMODS.Blind{
             _card:set_debuff(true)
             _card:juice_up()
         end
-    end,
 
-    press_play = function(self)
-        if G.jokers.cards[1] then
-            self.triggered = true
-            self.prepped = true
-        end
+        -- if G.jokers.cards[1] then
+        --     self.triggered = true
+        --     self.prepped = true
+        -- end
     end
 }

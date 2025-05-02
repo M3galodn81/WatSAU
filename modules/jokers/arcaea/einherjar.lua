@@ -3,7 +3,7 @@ SMODS.Joker{
     key = 'einherjar',
     atlas = 'watsau_jokers',                 
     pos = {x = 3, y = 0},                  
-    rarity = 1,                             
+    rarity = 3,                             
     cost = 5,                             
     unlocked = true,                        
     discovered = false,                     
@@ -25,7 +25,8 @@ SMODS.Joker{
         }    
     end,
 
-    calculate = function(self,card,context)
+    -- TODO: Make not destroy eternal
+    calculate = function(self,card,context) 
         if context.setting_blind then
             for i = 1, #G.jokers.cards do
                 if G.jokers.cards[i].ability.name ~= 'j_watsau_einherjar' then

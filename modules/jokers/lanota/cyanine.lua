@@ -28,16 +28,17 @@ SMODS.Joker{
 
     calculate = function(self,card,context)
         if context.individual and context.cardarea == G.play then
-            for i=1, #G.play.cards do
-                local rank = context.other_card:get_id()
-                if rank == 9 then
-                    card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.bonus 
-                    return {
-                        mult = card.ability.extra.mult;
-                    }
-                end
-            end
 
+            if context.other_card:get_id() == 9 then
+                card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.bonus 
+            end
+            
+        end
+
+        if context.joker_main then 
+            return {
+                mult = card.ability.extra.mult;
+            }
         end
     end,
 

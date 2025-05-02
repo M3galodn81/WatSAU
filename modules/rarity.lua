@@ -1,7 +1,8 @@
 local s_gradient = SMODS.Gradient{
     key = "stellar_gradient",
     colours = {
-        HEX('46447a'),
+        HEX('092479'),
+        HEX('009bff'),
         HEX('092479'),
         HEX('009bff'),
     }

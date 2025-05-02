@@ -8,7 +8,6 @@
 # Booster Packs
 Anomaly
 
-
 # Consumables
 - Anomaly
     Phigros
@@ -19,11 +18,8 @@ Anomaly
     - Creation      :
     - Catastrophe   :
 
-    - Corruption
-    - Restoration
-
-    - Awakening
-    - Fragmentation
+    - Light 
+    - Conflict
 
 - Note
 
@@ -53,16 +49,16 @@ Anomaly
 - Vulcānus
 
 - Stasis
-- cyanine
+- cyanine fix
 - You are the Miserable
 - Astaroth
 - Nyarlathotep's Dreamland
 - Androgynos
-- stasis
+- Stasis
 
 - CONVERGENCE
 - :3c
-- 
+- SUPERNOVA
 
 
 # Vouchers

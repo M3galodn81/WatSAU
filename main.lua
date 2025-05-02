@@ -76,7 +76,7 @@ assert(SMODS.load_file("./modules/blinds/showdown/distorted_fate.lua"))()
 assert(SMODS.load_file("./modules/blinds/showdown/inverted_world.lua"))() 
 assert(SMODS.load_file("./modules/blinds/showdown/unraveling_stasis.lua"))() 
 -- assert(SMODS.load_file("./modules/blinds/showdown/broken_sky.lua"))() 
-assert(SMODS.load_file("./modules/blinds/showdown/shatter_switch.lua"))() 
+assert(SMODS.load_file("./modules/blinds/showdown/disruptor_array.lua"))() 
 
 -- Boss Blinds
 assert(SMODS.load_file("./modules/blinds/boss/the_flip.lua"))()  --rename
@@ -85,7 +85,7 @@ assert(SMODS.load_file("./modules/blinds/boss/the_ace.lua"))()
 
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
-assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
+-- assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
 assert(SMODS.load_file("./modules/enhancement/burnt.lua"))() 
 -- assert(SMODS.load_file("./modules/enhancement/test.lua"))() 
 
