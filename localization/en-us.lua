@@ -35,6 +35,13 @@ return {
                     ", then hands and discards is set to 1 "
                 }
             },
+            bl_watsau_final_disruptor_array = {
+                name = "Disruptor Array",
+                text = {
+                    "Hand size -1",
+                    "per hand played"
+                }
+            },
             bl_watsau_the_flip = {
                 name = "The Count",
                 text = {
@@ -202,7 +209,11 @@ return {
 
         },
         challenge_names={
-
+            c_watsau_ch_formless = "Formless",
+            c_watsau_ch_arcana_master = "Arcana Master",
+            c_watsau_ch_the_clan = "The Clan",
+            c_watsau_ch_suit_stones = "Suit Stones",
+            c_watsau_ch_arcobatics = "Acrobatics",
         },
         collabs={
             
@@ -246,7 +257,9 @@ return {
 
         },
         v_text={
-
+            ch_c_arcana_master_rule_1 = {
+                "All {C:spectral}Spectral{} cards are banned"
+            }
         },
     },
 }
