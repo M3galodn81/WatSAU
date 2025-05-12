@@ -1,21 +1,21 @@
 
 {
 	"id": "WatSAU", 
-	"name": "Where are the Stars Above Us",
+	"name": "WatSAU Challenges",
 	"author": ["M3galodn81"],
-	"description": "WIP Balatro Mod, Peak Pain.", 
+	"description": "A mod with 5 vanilla challenges", 
 	"prefix": "watsau", 
 	"main_file": "main.lua",
 	"priority": 0, 
 	"badge_colour": "E1434B", 
 	"badge_text_colour": "2F2D32", 
 	"display_name": "WatSAU", 
-	"version": "0.1.0~pre-alpha", 
+	"version": "0.1.0", 
     "dependencies":[
 
 	],
 	"conflicts": [
-		"Cryptid (<=0.5.5)"
+		"Where are the Stars Above Us (<=3.0.0)"
 	], 
 	"provides": [], 
 	"dump_loc": false
