@@ -2,7 +2,7 @@ SMODS.Joker{
     key = 'spasmodic',
     atlas = 'watsau_jokers',                    
     pos = {x = 3, y = 0},                   
-    rarity = 2,                            
+    rarity = 3,                            
     cost = 5,                              
     unlocked = true,                        
     discovered = false,                     
@@ -11,23 +11,20 @@ SMODS.Joker{
     perishable_compat = true,               
     
     config = { 
-        extra = {
-        }
+
     },
 
     loc_vars = function(self,info_queue,center)
     end,
 
     calculate = function(self,card,context)
-        if context.individual and context.cardarea == G.play then
+        if context.repetition and context.cardarea == G.play then
             
-            for i=1, #G.play.cards do
-                local rank = context.other_card:get_id()
-                if rank <= 7 then
+            if context.other_card:is_suit("Hearts") then
                     return {
-                        chips = (rank*3);
+                        message = localize('k_again_ex'),
+                        repetitions = 1,
                     }
-                end
             end
         end
     end,

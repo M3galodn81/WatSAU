@@ -6,26 +6,30 @@ SMODS.Blind{
     boss_colour =HEX('528aae'),
 
     atlas = 'watsau_blinds', 
-    pos = { x = 0, y = 2 },
+    pos = { x = 0, y = 23 },
 
     debuff = {
-    
     }, 
 
-    set_blind = function()
+    --make every +mult to + chips
+    calculate = function(self,blind,context)
+        -- if goal is to make + 4 mult turn 
+        -- into + 4 Chips
 
-    end, 
+        if context.main_joker then
+            return {
+                    chips = mult;
+                    mult = 0;
+            }
+        end
 
-    recalc_debuff = function(self, card, from_blind)
-
-    end,
-
-
-    drawn_to_hand = function(self)
-
-    end,
-
-    press_play = function(self)
-
+        -- if context.post_trigger then
+        --     print(post_trigger)
+        --     if ret.mult > 0 then
+        --         return {
+        --             chips = ret.mult
+        --         }
+        --     end
+        -- end
     end
 }

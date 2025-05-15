@@ -16,11 +16,10 @@ SMODS.Blind{
     end,
 
     disable = function(self)
-        G.hand:change_size(-1)
-        G.FUNCS.draw_from_deck_to_hand(1) 
+
     end,
 
     press_play = function(self)
-        G.hand:change_size(-1)
+        
     end,
 }

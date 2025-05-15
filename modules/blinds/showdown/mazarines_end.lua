@@ -10,29 +10,47 @@ SMODS.Blind{
     pos = { x = 0, y = 0 },
 
     debuff = {
-        h_size_le = 3
+    
     }, 
 
-    -- press_play = function(self)
-    --     for i=#G.play.cards, 1, -1 do
-    --         destroyed_cards[#destroyed_cards+1] = G.play.cards[i]
-    --     end
-    --     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-    --         play_sound('tarot1')
-    --         return true end }))
-    --     G.E_MANAGER:add_event(Event({
-    --         trigger = 'after',
-    --         delay = 0.2,
-    --         func = function() 
-    --             for i=#G.play.cards, 1, -1 do
-    --                 local card = G.play.cards[i]
-    --                 if card.ability.name == 'Glass Card' then 
-    --                     card:shatter()
-    --                 else
-    --                     card:start_dissolve(nil, i == #G.play.cards)
-    --                 end
-    --             end
-    --             return true end }))
+    press_play = function(self)
+        
+    end,
 
-    -- end
+    calculate = function(self,blind,context)
+
+        -- if context.destroy_card and context.cardarea == G.play then
+        --     return{
+        --         remove = true
+        --     }
+        -- end
+
+        if context.individual and context.cardarea == G.play then
+
+            if context.other_card:get_id() == 3 or 
+            context.other_card:get_id() == 2 or 
+            context.other_card:get_id() == 14 
+            
+            then
+                if G.GAME.current_round.hands_left > 1 then
+                    self.hands_sub = G.GAME.current_round.hands_left - 1
+                elseif G.GAME.current_round.hands_left == 0 then
+                    self.hands_sub = 0
+                else 
+                    self.hands_sub = 1
+                end
+                ease_hands_played(-self.hands_sub)
+
+                if G.GAME.current_round.discards_left > 1 then
+                    self.discards_sub = G.GAME.current_round.discards_left - 1
+                elseif G.GAME.current_round.discards_left == 0 then
+                    self.discards_sub = 0
+                else 
+                    self.discards_sub = 1
+                end
+                ease_hands_played(-self.discards_sub)
+            end
+            
+        end
+    end
 }

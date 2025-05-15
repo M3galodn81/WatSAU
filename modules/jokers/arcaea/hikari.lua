@@ -25,7 +25,7 @@ SMODS.Joker{
 
     calculate = function(self,card,context)
         if context.individual and context.cardarea == G.play then
-            -- if boss is idk
+            -- if boss is Fracture Ray
             if G.GAME.blind.name == 'bl_watsau_final_distorted_fate' then
                 card.ability.extra.boss_active = true
             end

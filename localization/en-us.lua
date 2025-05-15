@@ -31,7 +31,7 @@ return {
             bl_watsau_final_mazarines_end = {
                 name = "Mazarine's End",
                 text = {
-                    "If played hand contains 3,2,and 1",
+                    "If played hand contains 3, 2, or Ace",
                     ", then hands and discards is set to 1 "
                 }
             },
@@ -159,6 +159,12 @@ return {
                 text = {
                     'Balance {C:chips}Chips{} and {C:mult}Mult{}',
                     'when this joker is triggered'
+                    }
+            },
+            j_watsau_spasmodic = {
+                name = 'Spasmodic',
+                text = {
+                    'Retrigger every {C:hearts}Heart{} cards',
                     }
             },
         },
