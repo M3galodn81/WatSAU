@@ -1,39 +1,44 @@
-local watsau_config = function()
-	watsau_nodes = {
-		{
-			n = G.UIT.R,
-			config = { align = "cm" },
-			nodes = {
-				{
-					n = G.UIT.O,
-					config = {
-						object = DynaText({
-							string = localize("cry_set_enable_features"),
-							colours = { G.C.WHITE },
-							shadow = true,
-							scale = 0.4,
-						}),
-					},
-				},
-			},
-		},
-	}
-
-
-	return {
-		n = G.UIT.ROOT,
-		config = {
-			emboss = 0.05,
-			minh = 6,
-			r = 0.1,
-			minw = 10,
-			align = "cm",
-			padding = 0.2,
-			colour = G.C.BLACK,
-		},
-		nodes = watsau_nodes,
-	}
+--ngl, i have no idea that is this so pain
+--i just copy this from Blueprint Mod
+SMODS.current_mod.config_tab = function()
+    return {n = G.UIT.ROOT, config = {r = 0.1, align = "cm", padding = 0.1, colour = G.C.BLACK, minw = 8, minh = 6}, 
+	nodes = {
+        {n = G.UIT.R, config = {align = "cl", padding = 0}, nodes = {
+            {n = G.UIT.C, config = { align = "c", padding = 0 }, nodes = {
+                { n = G.UIT.T, config = { 
+					text = "Disable WatSAU Jokers", 
+					scale = 0.35, 
+					colour = G.C.UI.TEXT_LIGHT 
+				}},
+            }},
+            {n = G.UIT.C, config = { align = "cl", padding = 0.05 }, nodes = {
+                create_toggle{ 
+					col = true, 
+					label = "", 
+					scale = 0.85, 
+					w = 0, 
+					shadow = true, 
+					ref_table = WatSAU_config.config, 
+					ref_value = 'disable_jokers' },
+            }},
+        }},
+        {n = G.UIT.R, config = {align = "cl", padding = 0}, nodes = {
+            {n = G.UIT.C, config = { align = "c", padding = 0 }, nodes = {
+                { n = G.UIT.T, config = { 
+					text = "Disable WatSAU Blinds", 
+					scale = 0.35, 
+					colour = G.C.UI.TEXT_LIGHT }},
+            }},
+            {n = G.UIT.C, config = { align = "cl", padding = 0.05 }, nodes = {
+                create_toggle{ 
+					col = true, 
+					label = "", 
+					scale = 0.85, 
+					w = 0, 
+					shadow = true, 
+					ref_table = WatSAU_config.config, 
+					ref_value = 'disable_blinds' },
+            }},
+        }},
+    }}
 end
-
-
-SMODS.current_mod.config_tab = watsau_config

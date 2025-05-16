@@ -15,7 +15,7 @@
 
 	],
 	"conflicts": [
-		"Cryptid (<=0.5.5)"
+		"Cryptid (<=0.1)"
 	], 
 	"provides": [], 
 	"dump_loc": false

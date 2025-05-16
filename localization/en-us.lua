@@ -17,8 +17,8 @@ return {
                 name = "Inverted World",
                 text = {
                     "Chips and Mult values are flipped,",
-                    "All Jokers are pinned ",
-                    "and its' order are flipped ",
+                    "All Jokers are flipped ",
+                    "and Hands and Discards are flipped ",
                 }
             },
             bl_watsau_final_unraveling_stasis = {

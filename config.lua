@@ -1,4 +1,5 @@
 return {
-	disable_jokers = false,
 	disable_blinds = false,
+	disable_jokers = true,
+
 }
