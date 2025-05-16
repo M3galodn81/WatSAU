@@ -6,7 +6,7 @@ SMODS.Blind{
     boss_colour =HEX('f7b300'),
 
     atlas = 'watsau_blinds', 
-    pos = { x = 0, y = 3 },
+    pos = { x = 0, y = 4 },
 
     debuff = {
 

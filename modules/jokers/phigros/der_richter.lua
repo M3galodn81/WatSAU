@@ -17,13 +17,16 @@ SMODS.Joker{
 
     calculate = function(self,card,context)
         if context.joker_main then
-            local nu_chip, nu_mult = G.GAME.selected_back:trigger_effect{context = 'joker_main', chips = hand_chips, mult = mult}
-            mult = mod_mult(nu_mult or mult)
-            hand_chips = mod_chips(nu_chip or hand_chips)
+            
+            local tot = hand_chips + mult
+                hand_chips = mod_chips(math.floor(tot / 2))
+				mult = mod_mult(math.floor(tot / 2))
+                update_hand_text({ delay = 0 }, { mult = mult, chips = hand_chips })
             return {
                 card = card,
                 message = 'Balanced',
                 colour = G.C.PURPLE,
+                
             }
             
         end

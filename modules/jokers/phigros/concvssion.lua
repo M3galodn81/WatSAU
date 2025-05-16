@@ -44,7 +44,11 @@ SMODS.Joker{
 
             return {
                 mult_mod = mult_mod,
-                chip_mod = chip_mod
+                chip_mod = chip_mod,
+
+                card = card,
+                message = 'Concvssion',
+                colour = G.C.BLUE,
             }
 
         end

@@ -1,7 +1,7 @@
 SMODS.Blind{
     key = "final_distorted_fate",
     dollars = 8,
-    mult = 1.5,
+    mult = 1.75,
     boss = {min = 1, max = 16, showdown = true},
     boss_colour =HEX('6f6ca6'),
 
