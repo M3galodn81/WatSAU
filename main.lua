@@ -29,6 +29,7 @@ SMODS.Atlas{
     frames = 21,
 }
 
+MOD_WatSAU = SMODS.current_mod
 -- Load Config Tab
 -- assert(SMODS.load_file("./modules/ui/tab_config.lua"))() 
 
@@ -38,33 +39,37 @@ SMODS.Atlas{
 -- Load Jokers
 
 -- TODO: Make auto load function based on config
--- Phigros
+
 if true then
+    -- Phigros
+
     assert(SMODS.load_file("./modules/jokers/phigros/der_richter.lua"))()
     assert(SMODS.load_file("./modules/jokers/phigros/concvssion.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/inferior.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/geopelia.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/spasmodic.lua"))() 
+
+    -- Lanota
+    assert(SMODS.load_file("./modules/jokers/lanota/cyanine.lua"))()
+
+
+    -- BOF
+    -- assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))() Aleph
+    assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))()
+
+    -- Arcaea
+    assert(SMODS.load_file("./modules/jokers/arcaea/einherjar.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/arcaea/tempestissimo.lua"))() 
+
+    -- Random
+    assert(SMODS.load_file("./modules/jokers/random/haze.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/random/myrtle.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/random/surtr.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/random/test_joker.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/random/jackhammer.lua"))() 
 end
 
--- Lanota
-assert(SMODS.load_file("./modules/jokers/lanota/cyanine.lua"))()
 
-
--- BOF
--- assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))() Aleph
-assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))()
-
--- Arcaea
-assert(SMODS.load_file("./modules/jokers/arcaea/einherjar.lua"))() 
-assert(SMODS.load_file("./modules/jokers/arcaea/tempestissimo.lua"))() 
-
--- Random
-assert(SMODS.load_file("./modules/jokers/random/haze.lua"))() 
-assert(SMODS.load_file("./modules/jokers/random/myrtle.lua"))() 
-assert(SMODS.load_file("./modules/jokers/random/surtr.lua"))() 
-assert(SMODS.load_file("./modules/jokers/random/test_joker.lua"))() 
-assert(SMODS.load_file("./modules/jokers/random/jackhammer.lua"))() 
 
 
 -- Load Consumables
@@ -82,7 +87,8 @@ assert(SMODS.load_file("./modules/blinds/showdown/disruptor_array.lua"))()
 -- Boss Blinds
 -- assert(SMODS.load_file("./modules/blinds/boss/the_flip.lua"))()  -- BROKEN AAAAAAA
 -- assert(SMODS.load_file("./modules/blinds/boss/the_product.lua"))()  --BROKEN AAAAAAAAAAA
-assert(SMODS.load_file("./modules/blinds/boss/the_ace.lua"))() 
+assert(SMODS.load_file("./modules/blinds/boss/the_ace.lua"))()
+assert(SMODS.load_file("./modules/blinds/boss/the_glitch.lua"))() 
 
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 

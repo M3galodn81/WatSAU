@@ -16,12 +16,10 @@ SMODS.Blind{
         
     end,
 
-
     press_play = function(self)
-
+        G.GAME.blind:wiggle()
         G.GAME.blind.chips = G.GAME.blind.chips * 1.1
         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
-
     end,
 
 }

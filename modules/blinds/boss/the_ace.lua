@@ -3,7 +3,7 @@ SMODS.Blind{
     dollars = 6,
     mult = 2,
     boss = {min = 1, max = 16},
-    boss_colour =HEX('341c9e'),
+    boss_colour =HEX('a33e6f'),
 
     atlas = 'watsau_blinds', 
     pos = { x = 0, y = 22 },
