@@ -42,7 +42,7 @@ assert(SMODS.load_file("./modules/ui/tab_config.lua"))()
 
 -- TODO: Make auto load function based on config
 
-if true then
+if WatSAU_config.config.disable_jokers == false then
     -- Phigros
 
     assert(SMODS.load_file("./modules/jokers/phigros/der_richter.lua"))()
@@ -77,24 +77,25 @@ end
 -- Load Consumables
 
 -- Load Blinds
+if WatSAU_config.config.disable_blinds == false then
+    -- Boss Showdown Blinds
+    assert(SMODS.load_file("./modules/blinds/showdown/mazarines_end.lua"))()  --needs fixing 
+    assert(SMODS.load_file("./modules/blinds/showdown/distorted_fate.lua"))() 
+    assert(SMODS.load_file("./modules/blinds/showdown/inverted_world.lua"))() 
+    assert(SMODS.load_file("./modules/blinds/showdown/unraveling_stasis.lua"))() 
+    -- assert(SMODS.load_file("./modules/blinds/showdown/broken_sky.lua"))() 
+    assert(SMODS.load_file("./modules/blinds/showdown/disruptor_array.lua"))() 
 
--- Boss Showdown Blinds
-assert(SMODS.load_file("./modules/blinds/showdown/mazarines_end.lua"))()  --needs fixing 
-assert(SMODS.load_file("./modules/blinds/showdown/distorted_fate.lua"))() 
-assert(SMODS.load_file("./modules/blinds/showdown/inverted_world.lua"))() 
-assert(SMODS.load_file("./modules/blinds/showdown/unraveling_stasis.lua"))() 
--- assert(SMODS.load_file("./modules/blinds/showdown/broken_sky.lua"))() 
-assert(SMODS.load_file("./modules/blinds/showdown/disruptor_array.lua"))() 
-
--- Boss Blinds
--- assert(SMODS.load_file("./modules/blinds/boss/the_flip.lua"))()  -- BROKEN AAAAAAA
--- assert(SMODS.load_file("./modules/blinds/boss/the_product.lua"))()  --BROKEN AAAAAAAAAAA
-assert(SMODS.load_file("./modules/blinds/boss/the_ace.lua"))()
-assert(SMODS.load_file("./modules/blinds/boss/the_glitch.lua"))() 
+    -- Boss Blinds
+    -- assert(SMODS.load_file("./modules/blinds/boss/the_flip.lua"))()  -- BROKEN AAAAAAA
+    -- assert(SMODS.load_file("./modules/blinds/boss/the_product.lua"))()  --BROKEN AAAAAAAAAAA
+    assert(SMODS.load_file("./modules/blinds/boss/the_ace.lua"))()
+    assert(SMODS.load_file("./modules/blinds/boss/the_glitch.lua"))() 
+end
 
 -- Load Enhancements
 assert(SMODS.load_file("./modules/enhancement/reinforced.lua"))() 
--- assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
+assert(SMODS.load_file("./modules/enhancement/molten.lua"))() 
 assert(SMODS.load_file("./modules/enhancement/burnt.lua"))() 
 -- assert(SMODS.load_file("./modules/enhancement/test.lua"))() 
 

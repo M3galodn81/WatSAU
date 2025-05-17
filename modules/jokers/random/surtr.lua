@@ -49,7 +49,7 @@ SMODS.Joker{
                 -- Check if card is not Molten / Burnt
                 if (v.config.card ~= G.P_CENTERS.m_watsau_molten or v.config.card ~= G.P_CENTERS.m_watsau_burnt ) and not v.debuff then
                     unmelted[#unmelted+1] = v
-                    print(v.config.card)
+                    -- print(v.config.card)
                     -- If Steel/Stone/Reinforced/Gold
                     if  v.config.center.key == 'm_steel' or
                         v.config.center.key == 'm_stone' or
