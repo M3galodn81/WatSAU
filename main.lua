@@ -33,6 +33,7 @@ sendInfoMessage("Loading WatSAU-config.lua", "WatSAU-config.lua")
 sendInfoMessage("Loading config.lua", "config.lua")
 -- Load Config Tab
 assert(SMODS.load_file("config.lua"))() 
+assert(SMODS.load_file("modules/utils/utils.lua"))() 
 WatSAU_config = SMODS.current_mod.config
 assert(SMODS.load_file("./modules/ui/tab_config.lua"))() 
 -- TODO: Make Config Tabs 

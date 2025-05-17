@@ -98,6 +98,7 @@ return {
                     'Gains {X:mult,C:white}X1{} Mult if you finish a round',
                     'with the same remaining hands as its first use;',
                     ' otherwise, resets to {X:mult,C:white}X1{} Mult',
+                    '{C:inactive}Currently, this Joker has{} {X:mult,C:white}X#3#{}{C:inactive} Mult{}',
                     '{C:inactive}Remaining Hands during first round:{} {C:chips}#2#{}'
                 }
             },
