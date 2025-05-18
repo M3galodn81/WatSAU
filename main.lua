@@ -82,8 +82,8 @@ if WatSAU_config.config.disable_blinds == false then
     assert(SMODS.load_file("./modules/blinds/showdown/distorted_fate.lua"))() 
     assert(SMODS.load_file("./modules/blinds/showdown/inverted_world.lua"))() 
     assert(SMODS.load_file("./modules/blinds/showdown/unraveling_stasis.lua"))() 
-    -- assert(SMODS.load_file("./modules/blinds/showdown/broken_sky.lua"))() 
     assert(SMODS.load_file("./modules/blinds/showdown/disruptor_array.lua"))() 
+    assert(SMODS.load_file("./modules/blinds/showdown/freedom_dive.lua"))() 
 
     -- Boss Blinds
     -- assert(SMODS.load_file("./modules/blinds/boss/the_flip.lua"))()  -- BROKEN AAAAAAA

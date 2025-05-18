@@ -1,6 +1,5 @@
 # Blinds
 - [ ] insert two word boss songs
-- Disruptor Array /
 - Freedom Dive
 - Ultimate Force
 
@@ -42,7 +41,6 @@ Anomaly
 - Rrharil
 
 - Designant.
-- Tempestissimo
 - Pentiment
 - Arghena
 - Aegleseeker
@@ -54,7 +52,7 @@ Anomaly
 - Astaroth
 - Nyarlathotep's Dreamland
 - Androgynos
-- Stasis
+
 
 - CONVERGENCE
 - :3c

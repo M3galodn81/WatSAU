@@ -42,6 +42,13 @@ return {
                     "per hand played"
                 }
             },
+            bl_watsau_final_freedom_dive = {
+                name = "Freedom Dive",
+                text = {
+                    "When you play a hand, -1 hand",
+                    "When you discard, -1 discard",
+                }
+            },
             bl_watsau_the_flip = {
                 name = "The Count",
                 text = {
