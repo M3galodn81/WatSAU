@@ -42,17 +42,35 @@ SMODS.Joker{
                         G.GAME.blind.chips = G.GAME.blind.chips * card.ability.extra.streak
                         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
                         card.ability.extra.x_mult = 1
-
-                        -- card.extra.streak
                         card.ability.extra.streak = 1 
+                        return {
+                            message = ':)',
+                            colour = G.C.MULT,
+                            card = card,
+                        }
                         
                     else
                         card.ability.extra.x_mult = card.ability.extra.x_mult + 0.25
-                        card.ability.extra.streak = card.ability.extra.streak + 1 
+                        card.ability.extra.streak = card.ability.extra.streak + 0.25 
+                        card.ability.extra.prev_hand_score = (mult*hand_chips)
+
+                        return {
+                            message = 'Upgrade',
+                            colour = G.C.ATTENTION,
+                            card = card,
+                        }
+
                     end
                 end
+
                 card.ability.extra.active = true
                 card.ability.extra.prev_hand_score = (mult*hand_chips)
+
+                return {
+                            message = 'Active',
+                            colour = G.C.ATTENTION,
+                            card = card,
+                        }
             
         end
 

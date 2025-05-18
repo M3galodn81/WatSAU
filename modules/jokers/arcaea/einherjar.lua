@@ -33,7 +33,7 @@ SMODS.Joker{
                     
                     G.E_MANAGER:add_event(Event({func = function()
                         G.GAME.joker_buffer = 0
-                        card.ability.extra.x_mult = card.ability.extra.x_mult + 1 
+                        card.ability.extra.x_mult = card.ability.extra.x_mult + 0.2 
                         card:juice_up(0.8, 0.8)
                         G.jokers.cards[i]:start_dissolve({HEX("57ecab")}, nil, 1.6)
                         play_sound('slice1', 0.96+math.random()*0.08)

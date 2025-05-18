@@ -120,7 +120,7 @@ return {
                 name = 'Einherjar Joker',
                 text = {
                     'When picking a blind, destroys other Jokers',
-                    'and gain {X:mult,C:white}X1{} per Joker destroyed',
+                    'and gain {X:mult,C:white}X0.2{} per Joker destroyed',
                     '{C:inactive}Currently gives:{} {X:mult,C:white}X#1#{}{C:inactive} Mult{}'
                 }
             },
@@ -171,7 +171,8 @@ return {
             j_watsau_aleph = {
                 name = 'Aleph 0',
                 text = {
-                    'Set {C:chips}Chips{} and {C:mult}Mult{} to the higher value',
+                    'Set both {C:chips}Chips{} and {C:mult}Mult{}',
+                    'to their max value',
                     }
             },
             j_watsau_esm = {
