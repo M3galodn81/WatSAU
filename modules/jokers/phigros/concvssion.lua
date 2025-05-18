@@ -45,6 +45,8 @@ SMODS.Joker{
             local mult_modi = 0
             local chip_mod = 0
 
+            print(add_mult)
+            print("^ ADD MULT VAl")
             if add_mult > 0 then
                 mult_modi = card.ability.extra.base - add_mult
             else
