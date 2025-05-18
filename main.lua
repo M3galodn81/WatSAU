@@ -57,8 +57,9 @@ if WatSAU_config.config.disable_jokers == false then
 
 
     -- BOF
-    -- assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))() Aleph
+    assert(SMODS.load_file("./modules/jokers/bof/aleph.lua"))() 
     assert(SMODS.load_file("./modules/jokers/bof/burn.lua"))()
+    assert(SMODS.load_file("./modules/jokers/bof/esm.lua"))()
 
     -- Arcaea
     assert(SMODS.load_file("./modules/jokers/arcaea/einherjar.lua"))() 
@@ -68,12 +69,9 @@ if WatSAU_config.config.disable_jokers == false then
     assert(SMODS.load_file("./modules/jokers/random/haze.lua"))() 
     assert(SMODS.load_file("./modules/jokers/random/myrtle.lua"))() 
     assert(SMODS.load_file("./modules/jokers/random/surtr.lua"))() 
-    assert(SMODS.load_file("./modules/jokers/random/test_joker.lua"))() 
+    -- assert(SMODS.load_file("./modules/jokers/random/test_joker.lua"))() 
     assert(SMODS.load_file("./modules/jokers/random/jackhammer.lua"))() 
 end
-
-
-
 
 -- Load Consumables
 

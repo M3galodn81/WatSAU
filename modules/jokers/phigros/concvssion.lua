@@ -4,7 +4,7 @@ SMODS.Joker{
         
     },
     atlas = 'watsau_jokers', 
-    pos = {x = 7, y = 0}, 
+    pos = {x = 1, y = 1}, 
     rarity = 4, 
     cost = 20, 
     unlocked = true, 
@@ -22,39 +22,51 @@ SMODS.Joker{
         return {vars = {center.ability.extra.base}}
     end,
 
+    -- 
     calculate = function(self,card,context)
         if context.joker_main then
-            local add_mult = mult % card.ability.extra.base
-            local add_chips = hand_chips % card.ability.extra.base
+        
+            local add_mult = 0
+            local add_chips = 0
 
-            local mult_mod = 0
+            if Talisman then
+                print(mult)
+                print(card.ability.extra.base)
+                print(mult % card.ability.extra.base)
+                print("FOR THE LOVE OF JIMBO PLS WORK")
+                add_mult = mult % card.ability.extra.base
+                add_chips = hand_chips % card.ability.extra.base
+                print("Talisman")
+            else
+                add_mult = mult % card.ability.extra.base
+                add_chips = hand_chips % card.ability.extra.base
+            end
+
+            local mult_modi = 0
             local chip_mod = 0
 
             if add_mult > 0 then
-                mult_mod = card.ability.extra.base - add_mult
+                mult_modi = card.ability.extra.base - add_mult
             else
-                mult_mod = 0
+                mult_modi = 0
             end
 
-            if add_chips > 0 then
-                chip_mod = card.ability.extra.base - add_chips
+            if add_chips> 0 then
+                chip_modi = card.ability.extra.base - add_chips
             else
-                chip_mod = 0
+                chip_modi = 0
             end
-
+            
+            
             return {
-                mult_mod = mult_mod,
-                chip_mod = chip_mod,
+                mult_mod = mult_modi,
+                chip_mod = chip_modi,
 
                 card = card,
                 message = 'Concvssion',
                 colour = G.C.BLUE,
             }
 
-        end
-
-        if context.final_scoring_step and context.cardarea == G.play then
-            
         end
 
     end

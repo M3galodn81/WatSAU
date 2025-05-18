@@ -2,7 +2,7 @@
 SMODS.Joker{
     key = 'einherjar',
     atlas = 'watsau_jokers',                 
-    pos = {x = 3, y = 0},                  
+    pos = {x = 0, y = 4},                  
     rarity = 3,                             
     cost = 5,                             
     unlocked = true,                        
@@ -30,7 +30,7 @@ SMODS.Joker{
         if context.setting_blind then
             for i = 1, #G.jokers.cards do
                 if G.jokers.cards[i].ability.name ~= 'j_watsau_einherjar' then
-                    print("remove j")
+                    
                     G.E_MANAGER:add_event(Event({func = function()
                         G.GAME.joker_buffer = 0
                         card.ability.extra.x_mult = card.ability.extra.x_mult + 1 

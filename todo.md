@@ -1,6 +1,6 @@
 # Blinds
 - [ ] insert two word boss songs
-- Disruptor Array
+- Disruptor Array /
 - Freedom Dive
 - Ultimate Force
 
@@ -18,8 +18,8 @@ Anomaly
     - Creation      :
     - Catastrophe   :
 
-    - Light 
-    - Conflict
+    - Light         :
+    - Conflict      :
 
 - Note
 
@@ -37,7 +37,7 @@ Anomaly
 - [ ] insert almost every original song from every RG EXCEPT every char in Rayark's Games (cuz personal reasons)
 - [ ] no artists 
 
-- Spasmodic
+- Spasmodic /
 - Igallta
 - Rrharil
 
@@ -49,7 +49,7 @@ Anomaly
 - Vulcānus
 
 - Stasis
-- cyanine fix
+- cyanine
 - You are the Miserable
 - Astaroth
 - Nyarlathotep's Dreamland

@@ -2,7 +2,7 @@
 SMODS.Joker{
     key = 'tempestissimo',
     atlas = 'watsau_jokers',                 
-    pos = {x = 3, y = 0},                  
+    pos = {x = 1, y = 4},                  
     rarity = 3,                             
     cost = 7,                             
     unlocked = true,                        
@@ -42,6 +42,8 @@ SMODS.Joker{
                         G.GAME.blind.chips = G.GAME.blind.chips * card.ability.extra.streak
                         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
                         card.ability.extra.x_mult = 1
+
+                        -- card.extra.streak
                         card.ability.extra.streak = 1 
                         
                     else

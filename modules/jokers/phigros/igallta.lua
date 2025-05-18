@@ -1,7 +1,7 @@
 SMODS.Joker{
     key = 'inferior',
     atlas = 'watsau_jokers',                    
-    pos = {x = 3, y = 0},                   
+    pos = {x = 5, y = 1},                   
     rarity = 3,                            
     cost = 6,                              
     unlocked = true,                        

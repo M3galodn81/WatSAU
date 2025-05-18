@@ -11,7 +11,7 @@ SMODS.Enhancement{
     },
     atlas = "watsau_jokers",
     pos = { 
-        x = 1, 
+        x = 0, 
         y = 8
     },
     -- shader = "watsau_molten",

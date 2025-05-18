@@ -10,7 +10,7 @@ SMODS.Joker{
         }
     },
     atlas = 'watsau_jokers',                      
-    pos = {x = 5, y = 0},                   
+    pos = {x = 0, y = 0},                   
     rarity = 4,                             
     cost = 10,                              
     unlocked = true,                         
@@ -95,6 +95,11 @@ SMODS.Joker{
                 }
             end
 
+            if card.ability.extra.HP < 0 then
+                return{
+                    remove = true
+                }
+            end
         end
     end,
 

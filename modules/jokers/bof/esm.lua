@@ -1,17 +1,21 @@
+-- ENERGY SYNERGY MATRIX
+
 SMODS.Joker{
-    key = 'aleph',
+    key = 'esm',
     atlas = 'watsau_jokers',                    
-    pos = {x = 0, y = 3},                   
+    pos = {x = 2, y = 3},                   
     rarity = 3,                             
     cost = 8,                              
     unlocked = true,                        
     discovered = false,                     
-    blueprint_compat = false,              
+    blueprint_compat = true,              
     eternal_compat = true,                 
-    perishable_compat = false,               
+    perishable_compat = true,               
     
     config = { 
-
+        extra = {
+            Xmult = 3
+        }
     },
 
     loc_vars = function(self,info_queue,center)
@@ -19,16 +23,15 @@ SMODS.Joker{
     end,
 
     calculate = function(self,card,context)
-        if context.joker_main then
-            local maxi = math.max(mult,hand_chips)
+        if context.joker_main and #context.full_hand == 3 then
+            
 
             return {
-                mult_mod = maxi-mult,
-                chip_mod = maxi-hand_chips,
+                Xmult_mod = card.ability.extra.Xmult ,
 
                 card = card,
-                message = 'Leveled',
-                colour = G.C.BLUE,
+                message = 'Pow',
+                colour = G.C.MULT,
             }
 
         end

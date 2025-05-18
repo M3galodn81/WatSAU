@@ -1,14 +1,14 @@
 SMODS.Joker{
     key = 'cyanine',
     atlas = 'watsau_jokers',                    
-    pos = {x = 3, y = 0},                   
+    pos = {x = 0, y = 2},                   
     rarity = 3,                       
     cost = 9,                              
     unlocked = true,                        
     discovered = false,                     
     blueprint_compat = false,              
     eternal_compat = true,                 
-    perishable_compat = false,               
+    perishable_compat = true,               
     
     config = { 
         extra = {

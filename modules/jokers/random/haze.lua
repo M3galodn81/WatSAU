@@ -29,6 +29,7 @@ SMODS.Joker{
     end,
 
     calculate = function(self,card,context)
+        
         -- scoring
         if context.joker_main then
             if context.scoring_name == "High Card" then

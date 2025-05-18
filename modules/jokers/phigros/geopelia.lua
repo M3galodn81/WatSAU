@@ -1,7 +1,7 @@
 SMODS.Joker{
     key = 'geopelia',
     atlas = 'watsau_jokers',                    
-    pos = {x = 3, y = 0},                   
+    pos = {x = 3, y = 1},                   
     rarity = "watsau_stellar",                       
     cost = 40,                              
     unlocked = true,                        

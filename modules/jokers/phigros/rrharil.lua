@@ -1,7 +1,7 @@
 SMODS.Joker{
     key = 'rrharil',
     atlas = 'watsau_jokers',                    
-    pos = {x = 3, y = 0},                   
+    pos = {x = 6, y = 1},                   
     rarity = 3,                            
     cost = 5,                              
     unlocked = true,                        

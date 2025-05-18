@@ -168,6 +168,19 @@ return {
                     'Retrigger every {C:hearts}Heart{} cards',
                     }
             },
+            j_watsau_aleph = {
+                name = 'Aleph 0',
+                text = {
+                    'Set {C:chips}Chips{} and {C:mult}Mult{} to the higher value',
+                    }
+            },
+            j_watsau_esm = {
+                name = 'ENERGY SYNERGY MATRIX',
+                text = {
+                    'Gives {X:mult,C:white}X3{} Mult when there are ',
+                    '{C:attention}exactly{} 3 played cards',
+                    }
+            },
         },
         Other={
             tooltip_non_metal = {
