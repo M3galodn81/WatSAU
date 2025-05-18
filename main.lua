@@ -47,7 +47,7 @@ if WatSAU_config.config.disable_jokers == false then
     -- Phigros
 
     assert(SMODS.load_file("./modules/jokers/phigros/der_richter.lua"))()
-    -- assert(SMODS.load_file("./modules/jokers/phigros/concvssion.lua"))() 
+    assert(SMODS.load_file("./modules/jokers/phigros/concvssion.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/inferior.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/geopelia.lua"))() 
     assert(SMODS.load_file("./modules/jokers/phigros/spasmodic.lua"))() 

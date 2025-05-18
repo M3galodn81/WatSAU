@@ -29,37 +29,24 @@ SMODS.Joker{
             local add_mult = 0
             local add_chips = 0
 
-            if Talisman then
-                print(mult)
-                print(card.ability.extra.base)
-                print(mult % card.ability.extra.base)
-                print("FOR THE LOVE OF JIMBO PLS WORK")
-                add_mult = mult % card.ability.extra.base
-                add_chips = hand_chips % card.ability.extra.base
-                print("Talisman")
-            else
-                add_mult = mult % card.ability.extra.base
-                add_chips = hand_chips % card.ability.extra.base
-            end
-
             local mult_modi = 0
             local chip_mod = 0
 
-            print(add_mult)
-            print("^ ADD MULT VAl")
-            if add_mult > 0 then
-                mult_modi = card.ability.extra.base - add_mult
+            if Talisman then
+                add_mult = to_big(mult) % card.ability.extra.base
+                add_chips = to_big(hand_chips) % card.ability.extra.base
+
+                mult_modi = (add_mult > to_big(0)) and (card.ability.extra.base - add_mult) or 0
+                chip_modi = (add_chips > to_big(0)) and (card.ability.extra.base - add_chips) or 0
+
             else
-                mult_modi = 0
+                add_mult = mult % card.ability.extra.base
+                add_chips = hand_chips % card.ability.extra.base
+
+                mult_modi = (add_mult > 0) and (card.ability.extra.base - add_mult) or 0
+                chip_modi = (add_chips > 0) and (card.ability.extra.base - add_chips) or 0
             end
 
-            if add_chips> 0 then
-                chip_modi = card.ability.extra.base - add_chips
-            else
-                chip_modi = 0
-            end
-            
-            
             return {
                 mult_mod = mult_modi,
                 chip_mod = chip_modi,
