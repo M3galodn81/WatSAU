@@ -50,10 +50,10 @@ return {
                 }
             },
             bl_watsau_the_flip = {
-                name = "The Count",
+                name = "The Flip",
                 text = {
-                    'All additive modifiers to Mult',
-                    'from Jokers affect Chips instead',
+                    'Flips Chips and Mult before scoring',
+                    'then flips back again after scoring',
                 }
             },
             bl_watsau_the_product = {

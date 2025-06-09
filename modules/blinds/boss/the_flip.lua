@@ -13,23 +13,15 @@ SMODS.Blind{
 
     --make every +mult to + chips
     calculate = function(self,blind,context)
-        -- if goal is to make + 4 mult turn 
-        -- into + 4 Chips
-
-        if context.main_joker then
-            return {
-                    chips = mult;
-                    mult = 0;
-            }
+        if context.before then
+            local temp_mult
+            local hand_chips
         end
 
-        -- if context.post_trigger then
-        --     print(post_trigger)
-        --     if ret.mult > 0 then
-        --         return {
-        --             chips = ret.mult
-        --         }
-        --     end
-        -- end
+        if context.pre_discard then
+            if  G.GAME.current_round.discards_left > 0 then
+                ease_discard(-1)  
+            end
+        end
     end
 }
